@@ -71,7 +71,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,7 +121,7 @@ TextureImporter:
       name: GridLines
       rect:
         serializedVersion: 2
-        x: 8
+        x: 56
         y: 0
         width: 8
         height: 8
@@ -142,7 +142,7 @@ TextureImporter:
       name: Grass 1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 48
         y: 0
         width: 8
         height: 8
@@ -163,8 +163,8 @@ TextureImporter:
       name: Grass 2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
+        x: 32
+        y: 0
         width: 8
         height: 8
       alignment: 0
@@ -184,8 +184,8 @@ TextureImporter:
       name: Grass 3
       rect:
         serializedVersion: 2
-        x: 8
-        y: 8
+        x: 40
+        y: 0
         width: 8
         height: 8
       alignment: 0
@@ -197,6 +197,27 @@ TextureImporter:
       bones: []
       spriteID: 67a62e6a113ea6c44b82b7a56bb0fd32
       internalID: 1020683037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collider 1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f968461414ef0dc4cb6262081261d657
+      internalID: -772642497
       vertices: []
       indices: 
       edges: []
@@ -213,6 +234,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Grass 3: 1020683037
+      Collider 1: -772642497
       Grass 1: -1539363672
       GridLines: -361732860
       Grass 2: -2146791499
