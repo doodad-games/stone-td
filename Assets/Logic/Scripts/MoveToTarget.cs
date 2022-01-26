@@ -9,6 +9,8 @@ public class MoveToTarget : MonoBehaviour
     [SerializeField] float _speed;
 #pragma warning restore CS0649
 
+    [HideInInspector] public Vector3 lastDir;
+
     Transform _target;
     Vector3 _targetPos;
 
@@ -40,6 +42,7 @@ public class MoveToTarget : MonoBehaviour
             : thisTickSpeed;
         
         transform.position += dir * thisTickSpeed;
+        lastDir = dir;
     }
 
     void RefreshTargetPos()
