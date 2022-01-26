@@ -60,6 +60,12 @@ MonoBehaviour:
     m_Localized: Retry
     m_Metadata:
       m_Items: []
+  - m_Id: 109693082271744
+    m_Localized: 'Shortcut: R
+
+      Can be used any time during gameplay'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

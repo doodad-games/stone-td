@@ -4,14 +4,18 @@ public class KeyboardInputController : MonoBehaviour
 {
     void Update()
     {
-        if (
-            Refs.I.gc != null &&
-            Refs.I.gc.isGameOver == false
-        ) CheckForGameplayInput();
+        if (Refs.I.gc != null)
+            CheckForGameplayInput();
     }
 
     void CheckForGameplayInput()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+            Refs.I.gc.Retry();
+        
+        if (Refs.I.gc.isGameOver)
+            return;
+
         if (
             Input.GetKeyDown(KeyCode.BackQuote) ||
             Input.GetKeyDown(KeyCode.Tilde)

@@ -49,6 +49,9 @@ public class GameController : MonoBehaviour
             DoTick();
     }
 
+    public void Retry() =>
+        SceneSwitcherSystem.I.ReloadCurrentScene();
+
     void DoTick()
     {
         if (!isGameOver)

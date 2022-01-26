@@ -51,6 +51,10 @@ MonoBehaviour:
     m_Key: Gameplay HUD - Game Over - Retry Button
     m_Metadata:
       m_Items: []
+  - m_Id: 109693082271744
+    m_Key: Tooltips - Retry Button
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
