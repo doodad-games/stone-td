@@ -11,11 +11,18 @@ public class GameController : MonoBehaviour
 
     public bool IsPlaying => Time.timeScale != 0;
 
-    void OnEnable() => Refs.I.gc = this;
+    void OnEnable()
+    {
+        Refs.I.gc = this;
+
+        Invader.onBroughtCrystalToCastle += HandleBroughtCrystalToCastle;
+    }
     void OnDisable()
     {
         if (Refs.I != null)
             Refs.I.gc = null;
+
+        Invader.onBroughtCrystalToCastle -= HandleBroughtCrystalToCastle;
     }
 
     void FixedUpdate() =>
@@ -38,4 +45,7 @@ public class GameController : MonoBehaviour
         for (var i = 0; i != numTicks; ++i)
             onTick?.Invoke();
     }
+
+    void HandleBroughtCrystalToCastle() =>
+        throw new NotImplementedException();
 }

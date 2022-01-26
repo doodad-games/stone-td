@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [DefaultExecutionOrder(EXEC_ORDER)]
@@ -6,6 +7,8 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
     public const int EXEC_ORDER = 10; // Non-zero to give things space to execute before it
 
     const float TARGET_REFRESH_INTERVAL = 1f;
+
+    public static event Action onBroughtCrystalToCastle;
 
     public Transform grabCrystalPoint;
 
@@ -101,8 +104,11 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
         _targetCastle != null &&
         _targetCastle.IsInRadiusOf(this) == true;
     
-    void HandleReachedCastle() =>
-        throw new System.NotImplementedException();
+    void HandleReachedCastle()
+    {
+        BroadcastMessage("Msg_OnBroughtCrystalToCastle");
+        onBroughtCrystalToCastle?.Invoke();
+    }
     
     bool HasReachedCrystal() =>
         targetCrystal != null &&
