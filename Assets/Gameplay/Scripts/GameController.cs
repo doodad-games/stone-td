@@ -1,9 +1,15 @@
 using System;
 using UnityEngine;
 
+[DefaultExecutionOrder(EXEC_ORDER)]
 public class GameController : MonoBehaviour
 {
+    public const int EXEC_ORDER = Refs.EXEC_ORDER + 1;
+
     public static event Action onTick;
+    public static event Action onPlayPauseToggled;
+
+    public bool IsPlaying => Time.timeScale != 0;
 
     void OnEnable() => Refs.I.gc = this;
     void OnDisable()
@@ -15,8 +21,11 @@ public class GameController : MonoBehaviour
     void FixedUpdate() =>
         onTick?.Invoke();
     
-    public void TogglePause() =>
+    public void TogglePause()
+    {
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        onPlayPauseToggled?.Invoke();
+    }
     
     public void SkipAhead(int numTicks)
     {

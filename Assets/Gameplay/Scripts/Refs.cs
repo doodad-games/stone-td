@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[DefaultExecutionOrder(-100)]
+[DefaultExecutionOrder(EXEC_ORDER)]
 public class Refs : MonoBehaviour
 {
+    public const int EXEC_ORDER = -100;
+
     public static Refs I { get; private set; }
 
     public static Castle NearestCastle(Vector3 pos) =>
