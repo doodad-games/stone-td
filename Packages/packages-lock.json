@@ -78,6 +78,20 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.addressables": {
+      "version": "1.19.15",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.scriptablebuildpipeline": "1.19.5",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.burst": {
       "version": "1.6.0",
       "depth": 1,
@@ -115,8 +129,25 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.localization": {
+      "version": "1.0.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.addressables": "1.19.9",
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.mathematics": {
       "version": "1.2.5",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "2.0.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -151,6 +182,13 @@
         "com.unity.render-pipelines.core": "13.1.4",
         "com.unity.shadergraph": "13.1.4"
       }
+    },
+    "com.unity.scriptablebuildpipeline": {
+      "version": "1.19.5",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
     },
     "com.unity.searcher": {
       "version": "4.9.1",
@@ -216,7 +254,7 @@
       "dependencies": {
         "com.unity.test-framework": "1.1.30"
       },
-      "hash": "5bcac8f55602c4db847b994c7536ce794b741c34"
+      "hash": "58baaa195b0fb3da8ced42d721618d095f98bbc0"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
