@@ -48,6 +48,9 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
         GameController.onTick -= HandleTick;
     }
 
+    public void SetCrystalFollowDistance(int followerI) =>
+        _movement.followDistance = Calcs.CrystalCarrierFollowDistance(followerI);
+
     void HandleTick()
     {
         MaybeRefreshMovementTarget();
@@ -83,21 +86,27 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
     {
         _targetCastle = Refs.NearestCastle(transform.position);
         _movement.SetTarget(_targetCastle?.transform);
+        _movement.followDistance = 0f;
     }
     
     void FindNearestCrystal()
     {
+        var newTargetCrystal = Refs.NearestCrystal(transform.position);
+        if (targetCrystal == newTargetCrystal)
+            return;
+
         if (targetCrystal != null)
             targetCrystal.onGrabbed -= HandleSomeoneGrabbedTargetCrystal;
+        if (newTargetCrystal != null)
+            newTargetCrystal.onGrabbed += HandleSomeoneGrabbedTargetCrystal;
 
-        targetCrystal = Refs.NearestCrystal(transform.position);
+        if (newTargetCrystal?.carriedBy != null)
+            _movement.SetTarget(newTargetCrystal.carriedBy.transform);
+        else _movement.SetTarget(newTargetCrystal?.transform);
 
-        if (targetCrystal?.carriedBy != null)
-            _movement.SetTarget(targetCrystal.carriedBy.transform);
-        else _movement.SetTarget(targetCrystal?.transform);
-
-        if (targetCrystal != null)
-            targetCrystal.onGrabbed += HandleSomeoneGrabbedTargetCrystal;
+        _movement.followDistance = 0f;
+        
+        targetCrystal = newTargetCrystal;
     }
 
     bool HasReachedCastle() =>

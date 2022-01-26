@@ -3,12 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class SetAnimRotationToMovementDirection : MonoBehaviour
 {
+    const float REFRESH_INTERVAL = 0.4f;
+
     public string propertyName = "Rotation";
 
     Animator _anim;
     MoveToTarget _movement;
 
     Vector3 _lastDir;
+    float _nextRefreshTime;
 
     void OnEnable()
     {
@@ -16,11 +19,18 @@ public class SetAnimRotationToMovementDirection : MonoBehaviour
         _movement = GetComponentInParent<MoveToTarget>();
     }
 
-    void Start() => Refresh();
-    void Update() => Refresh();
+    void Start() => Refresh(true);
+    void Update() => Refresh(false);
 
-    void Refresh()
+    void Refresh(bool force)
     {
+        if (!force)
+        {
+            if (Time.time < _nextRefreshTime)
+                return;
+            _nextRefreshTime = Time.time + REFRESH_INTERVAL;
+        }
+
         if (_movement == null)
             return;
 

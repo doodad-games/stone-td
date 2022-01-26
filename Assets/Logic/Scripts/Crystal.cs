@@ -1,10 +1,13 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [DefaultExecutionOrder(EXEC_ORDER)]
 public class Crystal : MonoBehaviour, IHasCollisionRadius
 {
     public const int EXEC_ORDER = Invader.EXEC_ORDER - 1;
+
+    const float CARRIER_FOLLOWER_DISTANCE_REFRESH_INTERVAL = 3f;
 
     public event Action onGrabbed;
 
@@ -17,11 +20,18 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius
 
     public float CollisionRadius => _collisionRadius;
 
-    void OnEnable() => Refs.I.Crystals.Add(this);
+    float _nextCarrierFollowerRefreshTime;
+
+    void OnEnable()
+    {
+        Refs.I.Crystals.Add(this);
+        GameController.onTick += HandleTick;
+    }
     void OnDisable()
     {
         if (Refs.I != null)
             Refs.I.Crystals.Remove(this);
+        GameController.onTick -= HandleTick;
     }
 
     public void HandleGrabbed(Invader invader)
@@ -31,5 +41,38 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius
         transform.localPosition = Vector3.zero;
         carriedBy = invader;
         onGrabbed?.Invoke();
+        RefreshCarrierFollowerDistances();
+    }
+
+    void HandleTick() => MaybeRefreshCarrierFollowerDistances();
+
+    void MaybeRefreshCarrierFollowerDistances()
+    {
+        if (
+            carriedBy != null &&
+            Time.time > _nextCarrierFollowerRefreshTime
+        ) RefreshCarrierFollowerDistances();
+    }
+
+    void RefreshCarrierFollowerDistances()
+    {
+        _nextCarrierFollowerRefreshTime = Time.time + CARRIER_FOLLOWER_DISTANCE_REFRESH_INTERVAL;
+
+        var thisPos = transform.position;
+        var followers = Refs.I.Invaders
+            .Where(_ => _.targetCrystal == this && _ != carriedBy)
+            .OrderBy(_ => (_.transform.position - thisPos).sqrMagnitude);
+
+        var followerI = 0;
+        foreach (var follower in followers)
+        {
+            if (
+                follower.targetCrystal != this ||
+                follower == carriedBy
+            ) continue; 
+            
+            follower.SetCrystalFollowDistance(followerI);
+            ++followerI;
+        }
     }
 }
