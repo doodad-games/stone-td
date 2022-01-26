@@ -48,6 +48,18 @@ MonoBehaviour:
       Shortcut: 1, 2 or 3'
     m_Metadata:
       m_Items: []
+  - m_Id: 76954408206336
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77167063613440
+    m_Localized: Invaders got away with a Crystal!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77919970541568
+    m_Localized: Retry
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

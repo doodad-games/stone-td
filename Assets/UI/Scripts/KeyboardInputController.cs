@@ -4,8 +4,10 @@ public class KeyboardInputController : MonoBehaviour
 {
     void Update()
     {
-        if (Refs.I.gc != null)
-            CheckForGameplayInput();
+        if (
+            Refs.I.gc != null &&
+            Refs.I.gc.isGameOver == false
+        ) CheckForGameplayInput();
     }
 
     void CheckForGameplayInput()

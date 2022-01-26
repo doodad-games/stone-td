@@ -8,8 +8,11 @@ public class GameController : MonoBehaviour
 
     public static event Action onTick;
     public static event Action onPlayPauseToggled;
+    public static event Action onGameOver;
 
     public bool IsPlaying => Time.timeScale != 0;
+
+    public bool isGameOver;
 
     void OnEnable()
     {
@@ -26,7 +29,7 @@ public class GameController : MonoBehaviour
     }
 
     void FixedUpdate() =>
-        onTick?.Invoke();
+        DoTick();
     
     public void TogglePause()
     {
@@ -43,9 +46,18 @@ public class GameController : MonoBehaviour
         }
 
         for (var i = 0; i != numTicks; ++i)
+            DoTick();
+    }
+
+    void DoTick()
+    {
+        if (!isGameOver)
             onTick?.Invoke();
     }
 
-    void HandleBroughtCrystalToCastle() =>
-        throw new NotImplementedException();
+    void HandleBroughtCrystalToCastle()
+    {
+        isGameOver = true;
+        onGameOver?.Invoke();
+    }
 }

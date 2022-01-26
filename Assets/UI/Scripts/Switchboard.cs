@@ -7,4 +7,7 @@ public class Switchboard : MonoBehaviour
 
     public void Insp_SkipAhead(float numSeconds) =>
         Refs.I.gc.SkipAhead((int)(numSeconds / Time.fixedDeltaTime));
+    
+    public void Insp_Retry() =>
+        SceneSwitcherSystem.I.ReloadCurrentScene();
 }

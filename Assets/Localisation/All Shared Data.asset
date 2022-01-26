@@ -39,6 +39,18 @@ MonoBehaviour:
     m_Key: Tooltips - Skip Buttons
     m_Metadata:
       m_Items: []
+  - m_Id: 76954408206336
+    m_Key: Gameplay HUD - Game Over - Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77167063613440
+    m_Key: Gameplay HUD - Game Over - Reason - Crystal Stolen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77919970541568
+    m_Key: Gameplay HUD - Game Over - Retry Button
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
