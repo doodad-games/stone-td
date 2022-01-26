@@ -10,6 +10,11 @@ public class KeyboardInputController : MonoBehaviour
 
     void CheckForGameplayInput()
     {
+        if (
+            Input.GetKeyDown(KeyCode.BackQuote) ||
+            Input.GetKeyDown(KeyCode.Tilde)
+        ) Refs.I.gc.TogglePause();
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Refs.I.gc.SkipAhead((int)(1 / Time.fixedDeltaTime));
         if (Input.GetKeyDown(KeyCode.Alpha2))

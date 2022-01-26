@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
     void FixedUpdate() =>
         onTick?.Invoke();
     
+    public void TogglePause() =>
+        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+    
     public void SkipAhead(int numTicks)
     {
         if (numTicks < 0)
