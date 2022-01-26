@@ -14,9 +14,9 @@ public class SetAnimRotationToMovementDirection : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _movement = GetComponentInParent<MoveToTarget>();
-        Refresh();
     }
 
+    void Start() => Refresh();
     void Update() => Refresh();
 
     void Refresh()

@@ -63,7 +63,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: SwitchingScene
+    m_ConditionEvent: Switching Scene
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1612136166512302572}
@@ -116,7 +116,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: SwitchingScene
+    m_ConditionEvent: Switching Scene
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8017898920835726374}
@@ -168,7 +168,7 @@ AnimatorController:
   m_Name: SceneSwitcherSystem
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: SwitchingScene
+  - m_Name: Switching Scene
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

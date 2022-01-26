@@ -17,6 +17,7 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
 #pragma warning restore CS0649
 
     [HideInInspector] public Crystal targetCrystal;
+    [HideInInspector] public bool wasSpawned;
 
     MoveToTarget _movement;
 

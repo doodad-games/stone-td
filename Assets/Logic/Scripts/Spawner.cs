@@ -29,12 +29,18 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    void Spawn(GameObject prefab) =>
-        Instantiate(
+    void Spawn(GameObject prefab)
+    {
+        var obj = Instantiate(
             prefab,
             transform.position + spawnOffset,
             Quaternion.identity
         );
+
+        var invader = obj.GetComponent<Invader>();
+        if (invader != null)
+            invader.wasSpawned = true;
+    }
 }
 
 [Serializable]

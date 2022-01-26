@@ -25,12 +25,12 @@ public class SceneSwitcherSystem : MonoBehaviour
     public void Load(string sceneName)
     {
         _sceneToLoad = sceneName;
-        _anim.SetBool("SwitchingScene", true);
+        _anim.SetBool("Switching Scene", true);
     }
 
     public void Insp_OnCoveredScreen()
     {
-        _anim.SetBool("SwitchingScene", false);
+        _anim.SetBool("Switching Scene", false);
         SceneManager.LoadScene(_sceneToLoad);
     }
 }
