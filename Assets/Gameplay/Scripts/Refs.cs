@@ -36,6 +36,8 @@ public class Refs : MonoBehaviour
     public HashSet<Crystal> Crystals { get; } = new HashSet<Crystal>();
     public HashSet<Invader> Invaders { get; } = new HashSet<Invader>();
 
+    public GameController gc;
+
     void OnEnable() => I = this;
     void OnDisable() => I = null;
 }

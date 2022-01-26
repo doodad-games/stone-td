@@ -28,6 +28,8 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
         Refs.I.Invaders.Add(this);
         _movement = GetComponent<MoveToTarget>();
         FindMovementTarget();
+
+        GameController.onTick += HandleTick;
     }
 
     void OnDisable()
@@ -38,9 +40,11 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
         if (targetCrystal != null)
             targetCrystal.onGrabbed -= HandleSomeoneGrabbedTargetCrystal;
         targetCrystal = null;
+
+        GameController.onTick -= HandleTick;
     }
 
-    void FixedUpdate()
+    void HandleTick()
     {
         MaybeRefreshMovementTarget();
 

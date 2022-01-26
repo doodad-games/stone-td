@@ -12,13 +12,16 @@ public class MoveToTarget : MonoBehaviour
     Transform _target;
     Vector3 _targetPos;
 
-    void FixedUpdate() => Move();
+    void OnEnable() => GameController.onTick += HandleTick;
+    void OnDisable() => GameController.onTick -= HandleTick;
 
     public void SetTarget(Transform tfm)
     {
         _target = tfm;
         RefreshTargetPos();
     }
+
+    void HandleTick() => Move();
     
     void Move()
     {
