@@ -266,7 +266,7 @@ public class PathingSystem : MonoBehaviour
                 new Vector3(coord.x, coord.y, 0)
             );
 
-            if (pathingData != null)
+            if (pathingData != null && pathingData.tilePathData.ContainsKey(coord))
             {
                 var tileMid = new Vector3(coord.x + 0.5f, coord.y + 0.5f, 0);
                 var dir = (pathingData.tilePathData[coord].nextPos - new Vector3(coord.x, coord.y, 0)).normalized;
