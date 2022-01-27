@@ -23,7 +23,7 @@ public class PathingSystem : MonoBehaviour
 
 #pragma warning disable CS0649
     [SerializeField] Tilemap _pathableTilemap;
-    [SerializeField] Tilemap _blockingTilemap;
+    [SerializeField] Tilemap[] _blockingTilemaps;
 
 #if UNITY_EDITOR
     [SerializeField] MonoBehaviour _gizmoVisualisationTarget;
@@ -40,8 +40,8 @@ public class PathingSystem : MonoBehaviour
     {
         _pathableTiles.UnionWith(GetCoordsInTilemap(_pathableTilemap));
 
-        if (_blockingTilemap != null)
-            _pathableTiles.ExceptWith(GetCoordsInTilemap(_blockingTilemap));
+        foreach (var tilemap in _blockingTilemaps)
+            _pathableTiles.ExceptWith(GetCoordsInTilemap(tilemap));
     }
     
     void OnEnable()
