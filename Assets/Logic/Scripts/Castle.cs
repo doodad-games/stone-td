@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [DefaultExecutionOrder(EXEC_ORDER)]
-public class Castle : MonoBehaviour, IHasCollisionRadius
+public class Castle : MonoBehaviour, IHasCollisionRadius, IPathingTarget
 {
     public const int EXEC_ORDER = Invader.EXEC_ORDER - 1;
 
@@ -12,6 +12,7 @@ public class Castle : MonoBehaviour, IHasCollisionRadius
     [HideInInspector] public Invader carriedBy;
 
     public float CollisionRadius => _entranceCollisionRadius;
+    public Vector3 PathingTargetPoint => transform.position;
 
     void OnEnable() => Refs.I.Castles.Add(this);
     void OnDisable()

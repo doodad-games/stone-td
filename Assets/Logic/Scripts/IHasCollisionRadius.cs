@@ -11,7 +11,8 @@ public static class IHasCollisionRadiusExtensions
     public static bool IsInRadiusOf(this IHasCollisionRadius @this, IHasCollisionRadius that)
     {
         var combinedRadiusSq = Mathf.Pow(@this.CollisionRadius + that.CollisionRadius, 2);
+        var paddedRadiusSq = combinedRadiusSq + 0.02f; // Lazy way of dodging annoying rounding errors
         var distSq = (@this.transform.position - that.transform.position).sqrMagnitude;
-        return distSq < combinedRadiusSq;
+        return distSq < paddedRadiusSq;
     }
 }

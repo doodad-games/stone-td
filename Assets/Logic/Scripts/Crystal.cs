@@ -3,13 +3,11 @@ using System.Linq;
 using UnityEngine;
 
 [DefaultExecutionOrder(EXEC_ORDER)]
-public class Crystal : MonoBehaviour, IHasCollisionRadius
+public class Crystal : MonoBehaviour, IHasCollisionRadius, IPathingTarget
 {
     public const int EXEC_ORDER = Invader.EXEC_ORDER - 1;
 
     const float CARRIER_FOLLOWER_DISTANCE_REFRESH_INTERVAL = 3f;
-
-    public event Action onGrabbed;
 
 #pragma warning disable CS0649
     [SerializeField] GameObject _collision;
@@ -19,6 +17,7 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius
     [HideInInspector] public Invader carriedBy;
 
     public float CollisionRadius => _collisionRadius;
+    public Vector3 PathingTargetPoint => carriedBy == null ? transform.position : carriedBy.transform.position;
 
     float _nextCarrierFollowerRefreshTime;
 
@@ -40,7 +39,6 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius
         transform.SetParent(invader.grabCrystalPoint, false);
         transform.localPosition = Vector3.zero;
         carriedBy = invader;
-        onGrabbed?.Invoke();
         RefreshCarrierFollowerDistances();
     }
 
@@ -50,13 +48,13 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius
     {
         if (
             carriedBy != null &&
-            Time.time > _nextCarrierFollowerRefreshTime
+            Refs.I.gc.time > _nextCarrierFollowerRefreshTime
         ) RefreshCarrierFollowerDistances();
     }
 
     void RefreshCarrierFollowerDistances()
     {
-        _nextCarrierFollowerRefreshTime = Time.time + CARRIER_FOLLOWER_DISTANCE_REFRESH_INTERVAL;
+        _nextCarrierFollowerRefreshTime = Refs.I.gc.time + CARRIER_FOLLOWER_DISTANCE_REFRESH_INTERVAL;
 
         var thisPos = transform.position;
         var followers = Refs.I.Invaders

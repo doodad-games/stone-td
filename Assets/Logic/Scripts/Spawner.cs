@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    static Vector3 _spawnOffset = new Vector3(0, -0.52f, 0);
+
     public ToSpawn[] toSpawn;
-    public Vector3 spawnOffset = new Vector3(0, -0.1f, 0);
 
     int _spawnI;
 
@@ -33,7 +34,7 @@ public class Spawner : MonoBehaviour
     {
         var obj = Instantiate(
             prefab,
-            transform.position + spawnOffset,
+            transform.position + _spawnOffset,
             Quaternion.identity
         );
 

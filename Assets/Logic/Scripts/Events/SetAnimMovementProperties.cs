@@ -1,11 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class SetAnimRotationToMovementDirection : MonoBehaviour
+public class SetAnimMovementProperties : MonoBehaviour
 {
-    const float REFRESH_INTERVAL = 0.4f;
+    const float REFRESH_INTERVAL = 0.2f;
 
-    public string propertyName = "Rotation";
+    public string rotationPropertyName = "Rotation";
+    public string didJustMovePropertyName = "Is Moving";
 
     Animator _anim;
     MoveToTarget _movement;
@@ -34,12 +35,14 @@ public class SetAnimRotationToMovementDirection : MonoBehaviour
         if (_movement == null)
             return;
 
+        _anim.SetBool(didJustMovePropertyName, _movement.didJustMove);
+
         var newDir = _movement.lastDir;
         if (_lastDir == newDir)
             return;
         _lastDir = newDir;
 
         var rotation = Vector2.Angle(Vector2.right, newDir);
-        _anim.SetFloat(propertyName, rotation);
+        _anim.SetFloat(rotationPropertyName, rotation);
     }
 }

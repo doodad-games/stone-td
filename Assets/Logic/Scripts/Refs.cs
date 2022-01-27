@@ -39,6 +39,7 @@ public class Refs : MonoBehaviour
     public HashSet<Invader> Invaders { get; } = new HashSet<Invader>();
 
     public GameController gc;
+    public PathingSystem ps;
 
     void OnEnable() => I = this;
     void OnDisable() => I = null;

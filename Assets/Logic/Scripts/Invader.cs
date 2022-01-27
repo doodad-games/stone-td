@@ -41,10 +41,6 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
         if (Refs.I != null)
             Refs.I.Invaders.Remove(this);
 
-        if (targetCrystal != null)
-            targetCrystal.onGrabbed -= HandleSomeoneGrabbedTargetCrystal;
-        targetCrystal = null;
-
         GameController.onTick -= HandleTick;
     }
 
@@ -69,13 +65,13 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
 
     void MaybeRefreshMovementTarget()
     {
-        if (Time.time > _nextTargetTime)
+        if (Refs.I.gc.time > _nextTargetTime)
             FindMovementTarget();
     }
 
     void FindMovementTarget()
     {
-        _nextTargetTime = Time.time + TARGET_REFRESH_INTERVAL;
+        _nextTargetTime = Refs.I.gc.time + TARGET_REFRESH_INTERVAL;
 
         if (_isHoldingCrystal)
             FindNearestCastle();
@@ -85,7 +81,7 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
     void FindNearestCastle()
     {
         _targetCastle = Refs.NearestCastle(transform.position);
-        _movement.SetTarget(_targetCastle?.transform);
+        _movement.SetTarget(_targetCastle);
         _movement.followDistance = 0f;
     }
     
@@ -95,15 +91,7 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
         if (targetCrystal == newTargetCrystal)
             return;
 
-        if (targetCrystal != null)
-            targetCrystal.onGrabbed -= HandleSomeoneGrabbedTargetCrystal;
-        if (newTargetCrystal != null)
-            newTargetCrystal.onGrabbed += HandleSomeoneGrabbedTargetCrystal;
-
-        if (newTargetCrystal?.carriedBy != null)
-            _movement.SetTarget(newTargetCrystal.carriedBy.transform);
-        else _movement.SetTarget(newTargetCrystal?.transform);
-
+        _movement.SetTarget(newTargetCrystal);
         _movement.followDistance = 0f;
         
         targetCrystal = newTargetCrystal;
@@ -130,13 +118,5 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
         _isHoldingCrystal = true;
         targetCrystal.HandleGrabbed(this);
         FindNearestCastle();
-    }
-
-    void HandleSomeoneGrabbedTargetCrystal()
-    {
-        if (targetCrystal.carriedBy == this)
-            return;
-        
-        _movement.SetTarget(targetCrystal.carriedBy.transform);
     }
 }

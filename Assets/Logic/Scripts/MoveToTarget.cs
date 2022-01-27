@@ -1,10 +1,7 @@
 using UnityEngine;
 
-[DefaultExecutionOrder(EXEC_ORDER)]
 public class MoveToTarget : MonoBehaviour
 {
-    public const int EXEC_ORDER = Invader.EXEC_ORDER;
-
     public float followDistance;
 
 #pragma warning disable CS0649
@@ -12,59 +9,83 @@ public class MoveToTarget : MonoBehaviour
 #pragma warning restore CS0649
 
     [HideInInspector] public Vector3 lastDir;
+    [HideInInspector] public bool didJustMove;
 
-    Transform _target;
-    Vector3 _targetPos;
+    IPathingTarget _target;
+    Vector3 _nextPos;
 
-    void OnEnable() => GameController.onTick += HandleTick;
-    void OnDisable() => GameController.onTick -= HandleTick;
-
-    public void SetTarget(Transform tfm)
+    void OnEnable()
     {
-        _target = tfm;
-        RefreshTargetPos();
+        GameController.onTick += HandleTick;
+        GameController.onGameOver += HandleGameOver;
+    }
+    void OnDisable()
+    {
+        GameController.onTick -= HandleTick;
+        GameController.onGameOver -= HandleGameOver;
+    }
+
+    public void SetTarget(IPathingTarget target)
+    {
+        _target = target;
+        _nextPos = transform.position; // This'll trigger a `SetNextPos` on the next tick
     }
 
     void HandleTick() => Move();
+    void HandleGameOver() => didJustMove = false;
+
+    void SetNextPos() =>
+        _nextPos = Refs.I.ps.GetNextMovePosToTarget(transform.position, _target);
     
     void Move()
     {
-        RefreshTargetPos();
-
-        var vec = _targetPos - transform.position;
-        if (vec == Vector3.zero)
+        if (_target == null)
             return;
 
-        var distSq = vec.sqrMagnitude;
-        var dir = vec.normalized;
+        didJustMove = false;
 
-        if (followDistance != 0f)
-        {
-            var actualTargetPos = _targetPos - dir * followDistance;
-            vec = actualTargetPos - transform.position;
-            if (vec == Vector3.zero)
+        var curPos = transform.position;
+
+        { // Look at the vector directly to the target to check following distance threshold only
+            var targetVec = _target.PathingTargetPoint - curPos;
+            if (
+                followDistance != 0f &&
+                Mathf.Pow(followDistance, 2) > targetVec.sqrMagnitude
+            )
+            {
+                // So they'll face the target when it passes them close by
+                lastDir = targetVec.normalized;
                 return;
+            }
+        }
 
-            // Set it to the original direction because we don't want to see them continuously flipping
+        // Otherwise continue moving one tile at a time
+
+        var movementRemaining = _speed * Time.fixedDeltaTime;
+        while (movementRemaining != 0f)
+        {
+            var vec = _nextPos - curPos;
+            var dist = vec.magnitude;
+
+            if (dist < movementRemaining)
+            {
+                transform.position = curPos = _nextPos;
+                SetNextPos();
+
+                if (_nextPos == curPos)
+                    return;
+
+                movementRemaining -= dist;
+                didJustMove = true;
+                continue;
+            }
+
+            var dir = vec.normalized;
+            transform.position += dir * movementRemaining;
             lastDir = dir;
 
-            distSq = vec.sqrMagnitude;
-            dir = vec.normalized;
+            movementRemaining = 0f;
+            didJustMove = true;
         }
-        else lastDir = dir;
-
-
-        var thisTickSpeed = _speed * Time.fixedDeltaTime;
-        var amountToMove = Mathf.Pow(thisTickSpeed, 2) > distSq
-            ? Mathf.Sqrt(distSq)
-            : thisTickSpeed;
-        
-        transform.position += dir * thisTickSpeed;
-    }
-
-    void RefreshTargetPos()
-    {
-        if (_target != null)
-            _targetPos = _target.position;
     }
 }

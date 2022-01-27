@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public bool IsPlaying => Time.timeScale != 0;
 
     public bool isGameOver;
-    public double time;
+    public float time;
 
     void OnEnable()
     {
@@ -59,7 +59,12 @@ public class GameController : MonoBehaviour
             return;
 
         time += Time.fixedDeltaTime;
-        onTick?.Invoke();
+        foreach (var del in onTick.GetInvocationList())
+        {
+            del.DynamicInvoke();
+            if (isGameOver)
+                return;
+        }
     }
 
     void HandleBroughtCrystalToCastle()
