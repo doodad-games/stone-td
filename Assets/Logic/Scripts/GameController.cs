@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     
     public void StartDefencePhase()
     {
-        if (!isDefencePhase)
+        if (isDefencePhase)
         {
             Debug.LogError("Tried to start defence phase while in defence phase 🤔");
             return;
