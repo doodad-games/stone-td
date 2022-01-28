@@ -12,6 +12,7 @@ public class MoveToTarget : MonoBehaviour
     [HideInInspector] public bool didJustMove;
 
     IPathingTarget _target;
+    Vector2Int _nextCoord;
     Vector3 _nextPos;
 
     void OnEnable()
@@ -34,8 +35,11 @@ public class MoveToTarget : MonoBehaviour
     void HandleTick() => Move();
     void HandleGameOver() => didJustMove = false;
 
-    void SetNextPos() =>
-        _nextPos = Refs.I.ps.GetNextMovePosToTarget(transform.position, _target);
+    void SetNextPos()
+    {
+        _nextCoord = Refs.I.ps.GetNextMoveCoordToTarget(transform.position, _target);
+        _nextPos = new Vector3(_nextCoord.x, _nextCoord.y, 0);
+    }
     
     void Move()
     {
@@ -64,6 +68,11 @@ public class MoveToTarget : MonoBehaviour
         var movementRemaining = _speed * Time.fixedDeltaTime;
         while (movementRemaining != 0f)
         {
+            var blocker = Refs.I.ps.GetBlocker(_nextCoord);
+            if (blocker != null)
+                // TODO: Animations
+                Destroy(blocker);
+
             var vec = _nextPos - curPos;
             var dist = vec.magnitude;
 

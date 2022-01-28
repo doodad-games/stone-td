@@ -18,7 +18,7 @@ public class PathingBlocker : MonoBehaviour
             Refs.I.ps.StaticallyBlockCoord(transform.position);
             Destroy(this);
         }
-        else Refs.I.ps.BlockCoord(_position);
+        else Refs.I.ps.BlockCoord(gameObject);
     }
 
     void Update()
@@ -33,6 +33,6 @@ public class PathingBlocker : MonoBehaviour
             return;
 
         if (Refs.I?.ps != null)
-            Refs.I.ps.UnblockCoord(_position);
+            Refs.I.ps.UnblockCoord(gameObject);
     }
 }
