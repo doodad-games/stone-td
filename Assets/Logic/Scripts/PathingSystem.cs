@@ -7,7 +7,8 @@ public class PathingSystem : MonoBehaviour
 {
     public const int EXEC_ORDER = 0;
 
-    const int NUM_TILES_TO_PROCESS_PER_BATCH = 50;
+    const int ARENA_WIDTH = 60;
+    const int NUM_TILES_TO_PROCESS_PER_BATCH = 500;
 
     static Vector2Int[] _dirs = new Vector2Int[]
     {
@@ -21,6 +22,8 @@ public class PathingSystem : MonoBehaviour
         new Vector2Int(1, -1)
     };
 
+    static Vector2Int[] _vec2IntCtnr4 = new Vector2Int[4];
+
 #pragma warning disable CS0649
     [SerializeField] Tilemap _pathableTilemap;
     [SerializeField] Tilemap[] _blockingTilemaps;
@@ -31,10 +34,12 @@ public class PathingSystem : MonoBehaviour
 #pragma warning restore CS0649
 
     HashSet<Vector2Int> _pathableTiles = new HashSet<Vector2Int>();
+    HashSet<Vector2Int> _blockedTiles = new HashSet<Vector2Int>();
     Dictionary<IPathingTarget, PathingData> _pathingData = new Dictionary<IPathingTarget, PathingData>();
 
     bool _staticsFinalised;
     bool _doCalculationsImmediately;
+    bool _recalculateOnNextRequest;
 
     void Awake()
     {
@@ -56,11 +61,11 @@ public class PathingSystem : MonoBehaviour
         GameController.onTick -= HandleTick;
     }
 
-    public void RemoveCoordFromPathingGrid(Vector3 tilePos)
+    public void StaticallyBlockCoord(Vector3 tilePos)
     {
         if (_staticsFinalised)
         {
-            Debug.LogError($"Static tile exception attempted after finalisation 😮 Ignoring");
+            Debug.LogError($"Static tile block attempted after finalisation 😮 Ignoring");
             return;
         }
 
@@ -71,26 +76,69 @@ public class PathingSystem : MonoBehaviour
             !Mathf.Approximately(coord.y, tilePos.y)
         )
         {
-            Debug.LogError($"Static tile exception added with non-integer tilePos (${tilePos}) 😮 Ignoring");
+            Debug.LogError($"Tile block added with non-integer tilePos (${tilePos}) 😮 Ignoring");
             return;
         }
 
         _pathableTiles.Remove(coord);
     }
 
+    public void BlockCoord(Vector3 tilePos)
+    {
+        var coord = WorldPosToCoord(tilePos);
+
+        if (
+            !Mathf.Approximately(coord.x, tilePos.x) ||
+            !Mathf.Approximately(coord.y, tilePos.y)
+        )
+        {
+            Debug.LogError($"Tile block added with non-integer tilePos (${tilePos}) 😮 Ignoring");
+            return;
+        }
+
+        if (_blockedTiles.Contains(coord))
+        {
+            Debug.LogError($"Attempting to block coord ({coord}) which is already blocked 😮 Ignoring");
+            return;
+        }
+
+        _blockedTiles.Add(coord);
+
+        if (_staticsFinalised)
+            _recalculateOnNextRequest = true;
+    }
+
+    public void UnblockCoord(Vector3 tilePos)
+    {
+        var coord = WorldPosToCoord(tilePos);
+        if (!_blockedTiles.Contains(coord))
+        {
+            Debug.LogError($"Attempting to unblock coord ({coord}) which isn't marked as blocked");
+            return;
+        }
+
+        _blockedTiles.Remove(coord);
+
+        if (_staticsFinalised)
+            _recalculateOnNextRequest = true;
+    }
+
     public void FinaliseStatics()
     {
         _staticsFinalised = true;
-        CalculateInitialPathing();
+        ImmediatelyCalculateAllPathing();
     }
 
     public Vector3 GetNextMovePosToTarget(Vector3 curPos, IPathingTarget target)
     {
-        if (!_pathingData.ContainsKey(target))
+        if (_recalculateOnNextRequest)
         {
-            Debug.LogError("Requesting move dir to invalid target!");
-            return Vector3.zero;
+            _recalculateOnNextRequest = false;
+            ImmediatelyCalculateAllPathing();
         }
+
+        if (!_pathingData.ContainsKey(target))
+            return (target.PathingTargetPoint - curPos).normalized;
 
         var coord = WorldPosToCoord(curPos);
         var data = _pathingData[target].tilePathData;
@@ -98,7 +146,7 @@ public class PathingSystem : MonoBehaviour
         if (!data.ContainsKey(coord))
         {
             Debug.LogError($"Requesting move dir from invalid location: {curPos}");
-            return Vector3.zero;
+            return (target.PathingTargetPoint - curPos).normalized;
         }
 
         return data[coord].nextPos;
@@ -113,10 +161,14 @@ public class PathingSystem : MonoBehaviour
                 Debug.LogError("Crystal added after pathing data was finalised");
                 continue;
             }
+        }
 
-            var curCoord = WorldPosToCoord(crystal.transform.position);
-            if (_pathingData[crystal].lastTargetCoord != curCoord)
-                RecalculatePathing(crystal);
+        foreach (var pair in _pathingData)
+        {
+            var target = pair.Key;
+            var curCoord = WorldPosToCoord(target.PathingTargetPoint);
+            if (_pathingData[target].lastTargetCoord != curCoord)
+                RecalculatePathing(target);
         }
 
         foreach (var pair in _pathingData)
@@ -137,21 +189,23 @@ public class PathingSystem : MonoBehaviour
         }
     }
 
-    void CalculateInitialPathing()
+    void ImmediatelyCalculateAllPathing()
     {
         _doCalculationsImmediately = true;
 
         foreach (var crystal in Refs.I.Crystals)
         {
-            _pathingData[crystal] = new PathingData();
+            if (!_pathingData.ContainsKey(crystal))
+                _pathingData[crystal] = new PathingData();
             RecalculatePathing(crystal);
         }
         foreach (var castle in Refs.I.Castles)
         {
-            _pathingData[castle] = new PathingData();
+            if (!_pathingData.ContainsKey(castle))
+                _pathingData[castle] = new PathingData();
             RecalculatePathing(castle);
         }
-        
+
         _doCalculationsImmediately = false;
     }
 
@@ -165,8 +219,8 @@ public class PathingSystem : MonoBehaviour
 
         var coord = WorldPosToCoord(obj.PathingTargetPoint);
         pathingData.lastTargetCoord = coord;
-        pathingData.tilePathData[coord] = new TilePathData { nextPos = obj.PathingTargetPoint }; 
         pathingData.visitedTiles.Add(coord);
+        pathingData.tilePathData[coord] = new TilePathData { nextPos = obj.PathingTargetPoint }; 
 
         SetNeighbourTileData(pathingData, coord);
         ProcessSomeTiles(pathingData);
@@ -174,30 +228,24 @@ public class PathingSystem : MonoBehaviour
 
     void SetNeighbourTileData(PathingData pathingData, Vector2Int visitedTileCoord)
     {
-        var visitedPos = new Vector3(visitedTileCoord.x, visitedTileCoord.y, 0);
-
         foreach (var dir in _dirs)
         {
             var neighbourCoord = visitedTileCoord + dir;
 
-            if (
-                !_pathableTiles.Contains(neighbourCoord) ||
-                (
-                    dir.x != 0 && dir.y != 0 &&
-                    !(
-                        _pathableTiles.Contains(visitedTileCoord + new Vector2Int(0, dir.y)) &&
-                        _pathableTiles.Contains(visitedTileCoord + new Vector2Int(dir.x, 0))
-                    )
-                )
-            ) continue;
+            if (IsNeighbourBlocked(visitedTileCoord, neighbourCoord, pathingData.lastTargetCoord))
+                continue;
 
             var neighbourWeight = pathingData.tilePathData[visitedTileCoord].weight + dir.magnitude;
 
+            var visitedPos = new Vector3(visitedTileCoord.x, visitedTileCoord.y, 0);
             if (
-                !pathingData.visitedTiles.Contains(neighbourCoord) &&
                 (
-                    !pathingData.tilesToVisitSet.Contains(neighbourCoord) ||
+                    pathingData.tilePathData.ContainsKey(neighbourCoord) &&
                     pathingData.tilePathData[neighbourCoord].weight > neighbourWeight
+                ) ||
+                (
+                    !pathingData.visitedTiles.Contains(neighbourCoord) &&
+                    !pathingData.tilesToVisitSet.Contains(neighbourCoord)
                 )
             )
             {
@@ -210,6 +258,23 @@ public class PathingSystem : MonoBehaviour
                 pathingData.tilesToVisitSet.Add(neighbourCoord);
             }
         }
+    }
+
+    // Assumes `toCoord` is one step away from `fromCoord`
+    Vector2Int[] GetPotentiallyBlockingCoords(Vector2Int fromCoord, Vector2Int toCoord)
+    {
+        var dir = toCoord - fromCoord;
+        _vec2IntCtnr4[0] = fromCoord;
+        _vec2IntCtnr4[1] = fromCoord + dir;
+
+        if (dir.x != 0 && dir.y != 0)
+        {
+            _vec2IntCtnr4[2] = fromCoord + new Vector2Int(0, dir.y);
+            _vec2IntCtnr4[3] = fromCoord + new Vector2Int(dir.x, 0);
+        }
+        else _vec2IntCtnr4[2] = _vec2IntCtnr4[3] = _vec2IntCtnr4[1];
+
+        return _vec2IntCtnr4;
     }
 
     void ProcessSomeTiles(PathingData pathingData)
@@ -235,6 +300,23 @@ public class PathingSystem : MonoBehaviour
             Mathf.RoundToInt(worldPos.y)
         );
 
+    bool IsNeighbourBlocked(Vector2Int fromCoord, Vector2Int toCoord, Vector2Int targetCoord)
+    {
+        var potentiallyBlockingCoords = GetPotentiallyBlockingCoords(fromCoord, toCoord);
+        foreach (var potentiallyBlockingCoord in potentiallyBlockingCoords)
+        {
+            if (potentiallyBlockingCoord == targetCoord)
+                continue;
+
+            if (
+                !_pathableTiles.Contains(potentiallyBlockingCoord) ||
+                _blockedTiles.Contains(potentiallyBlockingCoord)
+            ) return true;
+        }
+
+        return false;
+    }
+
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
@@ -245,10 +327,12 @@ public class PathingSystem : MonoBehaviour
             _pathingData.ContainsKey(target)
         ) pathingData = _pathingData[target];
 
-        Gizmos.color = new Color(1f, 1f, 1f, 0.2f);
-
         foreach (var coord in _pathableTiles)
         {
+            Gizmos.color = _blockedTiles.Contains(coord)
+                ? new Color(1f, 0f, 0f, 0.7f)
+                : new Color(1f, 1f, 0f, 0.5f);
+
             Gizmos.DrawLine(
                 new Vector3(coord.x, coord.y, 0),
                 new Vector3(coord.x + 1, coord.y, 0)

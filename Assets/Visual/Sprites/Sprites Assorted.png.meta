@@ -346,6 +346,132 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 32
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec8d7073bdb056c4cbdbff5d332ce9eb
+      internalID: 229547714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36d1b3891b3d57e41b5454af93d01b96
+      internalID: 256816506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 Outline
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 33
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff74a987c9a0d324e8331e0b113f1b57
+      internalID: -1666986536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 Outline
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 33
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8967d2aa93c376e499cb86ec78cc269f
+      internalID: -1468790269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 Static
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 16
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1507095838336d64eadc1ccf94fd0cbe
+      internalID: 604388417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 Static
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0b31c7c0d1cec488481329a1d8dcfa
+      internalID: 687706700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -361,13 +487,19 @@ TextureImporter:
       Pause: 473624087
       Play: -1386403125
       Tree Dead 2: -1093663686
+      Stone Wall 1 Outline: -1666986536
       Collider 3: 1078936002
       Tree 2: -970295059
       Tree Dead 4: 1756975059
+      Stone Wall 2 Static: 687706700
+      Stone Wall 2 Outline: -1468790269
       Tree 1: 1427560564
+      Stone Wall 1 Static: 604388417
       Tree 4: -2069577021
       Tree Dead 1: -663851033
       Tree 3: 1230642128
+      Stone Wall 2: 256816506
+      Stone Wall 1: 229547714
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
