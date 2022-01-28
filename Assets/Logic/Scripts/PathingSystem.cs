@@ -35,7 +35,7 @@ public class PathingSystem : MonoBehaviour
 #pragma warning restore CS0649
 
     HashSet<Vector2Int> _pathableTiles = new HashSet<Vector2Int>();
-    Dictionary<Vector2Int, GameObject> _blockedTiles = new Dictionary<Vector2Int, GameObject>();
+    Dictionary<Vector2Int, PathingBlocker> _blockedTiles = new Dictionary<Vector2Int, PathingBlocker>();
     Dictionary<IPathingTarget, PathingData> _pathingData = new Dictionary<IPathingTarget, PathingData>();
 
     bool _staticsFinalised;
@@ -84,9 +84,9 @@ public class PathingSystem : MonoBehaviour
         _pathableTiles.Remove(coord);
     }
 
-    public void BlockCoord(GameObject obj)
+    public void BlockCoord(PathingBlocker blocker)
     {
-        var tilePos = obj.transform.position;
+        var tilePos = blocker.transform.position;
         var coord = WorldPosToCoord(tilePos);
 
         if (
@@ -104,22 +104,22 @@ public class PathingSystem : MonoBehaviour
             return;
         }
 
-        _blockedTiles[coord] = obj;
+        _blockedTiles[coord] = blocker;
 
         if (_staticsFinalised)
             _recalculateOnNextRequest = true;
     }
 
-    public void UnblockCoord(GameObject obj)
+    public void UnblockCoord(PathingBlocker blocker)
     {
-        var coord = WorldPosToCoord(obj.transform.position);
+        var coord = WorldPosToCoord(blocker.transform.position);
         if (!_blockedTiles.ContainsKey(coord))
         {
             Debug.LogError($"Attempting to unblock coord ({coord}) which isn't marked as blocked");
             return;
         }
 
-        if (_blockedTiles[coord] != obj)
+        if (_blockedTiles[coord] != blocker)
         {
             Debug.LogError($"Attempting to unblock coord ({coord}) but the object already recorded there doesn't match!");
             return;
@@ -131,7 +131,7 @@ public class PathingSystem : MonoBehaviour
             _recalculateOnNextRequest = true;
     }
 
-    public GameObject GetBlocker(Vector2Int coord)
+    public PathingBlocker GetBlocker(Vector2Int coord)
     {
         if (_blockedTiles.ContainsKey(coord))
             return _blockedTiles[coord];
@@ -327,9 +327,13 @@ public class PathingSystem : MonoBehaviour
             if (
                 !_pathableTiles.Contains(potentiallyBlockingCoord) ||
                 (
-                    // Can move through blockers (by destroying them first) if need be, only if not diagonal
-                    dirIsDiagonal &&
-                    _blockedTiles.ContainsKey(potentiallyBlockingCoord)
+                    _blockedTiles.ContainsKey(potentiallyBlockingCoord) &&
+                    (
+                        // Can move through blockers (by destroying them first) if need be, only if not diagonal
+                        dirIsDiagonal ||
+                        
+                        !_blockedTiles[potentiallyBlockingCoord].isDestructible
+                    )
                 )
             ) return true;
         }

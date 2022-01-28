@@ -69,9 +69,9 @@ public class MoveToTarget : MonoBehaviour
         while (movementRemaining != 0f)
         {
             var blocker = Refs.I.ps.GetBlocker(_nextCoord);
-            if (blocker != null)
+            if (blocker?.isDestructible == true)
                 // TODO: Animations
-                Destroy(blocker);
+                Destroy(blocker.gameObject);
 
             var vec = _nextPos - curPos;
             var dist = vec.magnitude;

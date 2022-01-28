@@ -6,6 +6,7 @@ public class PathingBlocker : MonoBehaviour
     public const int EXEC_ORDER = PathingSystem.EXEC_ORDER + 1;
 
     public bool isStatic;
+    public bool isDestructible;
 
     Vector3 _position;
 
@@ -18,7 +19,7 @@ public class PathingBlocker : MonoBehaviour
             Refs.I.ps.StaticallyBlockCoord(transform.position);
             Destroy(this);
         }
-        else Refs.I.ps.BlockCoord(gameObject);
+        else Refs.I.ps.BlockCoord(this);
     }
 
     void Update()
@@ -33,6 +34,6 @@ public class PathingBlocker : MonoBehaviour
             return;
 
         if (Refs.I?.ps != null)
-            Refs.I.ps.UnblockCoord(gameObject);
+            Refs.I.ps.UnblockCoord(this);
     }
 }

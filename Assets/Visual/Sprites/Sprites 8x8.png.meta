@@ -367,6 +367,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Wall
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7561b46fb493b6843b24e325a7124163
+      internalID: 1500765069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall Connector Horizontal
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0468515c51ede5e4a90397fbc634339e
+      internalID: 440848675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall Connector Vertical
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c86d01049b999244888fbcfe6d629507
+      internalID: 273665283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites 8x8_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7ccb2c31b573846acd7af3f7eaf08e
+      internalID: -1676664747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -381,14 +465,18 @@ TextureImporter:
       Grass 3: 1020683037
       Collider 1: -772642497
       Grass 1: -1539363672
+      Wall Connector Horizontal: 440848675
       Button Frame Disabled: 658314135
       Grid Lines: -361732860
       Button Frame Highlight: 516097057
       Button Frame: -645999227
       Grass 2: -2146791499
+      Wall Connector Vertical: 273665283
       Button Frame Pressed: 908659588
       Water 3: -1000978625
+      Wall: 1500765069
       Water 1: 2129301659
+      Sprites 8x8_0: -1676664747
       Water 2: -555846283
   spritePackingTag: 
   pSDRemoveMatte: 0
