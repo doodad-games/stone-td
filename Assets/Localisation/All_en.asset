@@ -91,10 +91,15 @@ MonoBehaviour:
       Shortcut: ` or ~'
     m_Metadata:
       m_Items: []
+  - m_Id: 844280217468928
+    m_Localized: '{AmountUsed} / {AmountTotal}'
+    m_Metadata:
+      m_Items:
+      - rid: 6390728359991050242
   references:
     version: 2
     RefIds:
     - rid: 6390728359991050242
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0040eaa2eecf0200
+        m_Entries: 0040eaa2eecf02000000744edeff0200

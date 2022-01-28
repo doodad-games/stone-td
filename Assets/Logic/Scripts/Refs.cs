@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,10 +43,16 @@ public class Refs : MonoBehaviour
     public GameController gc;
     public PathingSystem ps;
 
+    public Dictionary<Stone.Type, HashSet<Stone>> tappedStones = new Dictionary<Stone.Type, HashSet<Stone>>();
+
     void OnEnable()
     {
         I = this;
         cam = Camera.main;
+
+        foreach (Stone.Type type in Enum.GetValues(typeof(Stone.Type)))
+            if (type != Stone.Type.None)
+                tappedStones[(Stone.Type)type] = new HashSet<Stone>();
     }
     void OnDisable() => I = null;
 }

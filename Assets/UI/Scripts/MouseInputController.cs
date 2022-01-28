@@ -9,6 +9,9 @@ public class MouseInputController : MonoBehaviour
 
     void CheckConstructionInput()
     {
+        if (Refs.I.gc.isDefencePhase)
+            return;
+
         var mousePos = Refs.I.cam.ScreenToWorldPoint(Input.mousePosition);
         var raycast = Physics2D.Raycast(mousePos, Vector2.zero);
 

@@ -71,6 +71,10 @@ MonoBehaviour:
     m_Key: Tooltips - End Construction Phase
     m_Metadata:
       m_Items: []
+  - m_Id: 844280217468928
+    m_Key: Gameplay HUD - Stone Button Count
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

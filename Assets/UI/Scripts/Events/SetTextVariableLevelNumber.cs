@@ -14,6 +14,8 @@ public class SetTextVariableLevelNumber : MonoBehaviour
         var locString = GetComponent<LocalizeStringEvent>();
         locString.StringReference.Remove("LevelNumber");
         locString.StringReference.Add("LevelNumber", new IntVariable { Value = levelNum });
+        locString.RefreshString();
+
         Destroy(this);
     }
 }
