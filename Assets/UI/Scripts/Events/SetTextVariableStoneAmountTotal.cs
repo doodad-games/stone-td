@@ -4,13 +4,13 @@ using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class SetTextVariableStoneAmountTotal : MonoBehaviour
 {
-    public Stone.Type type;
+    public StoneTypeParameter type;
 
     LocalizeStringEvent _locString;
 
     void OnEnable()
     {
-        if (type == Stone.Type.None)
+        if (type.type == Stone.Type.None)
         {
             Debug.LogError("Uninitialised stone type", gameObject);
             Destroy(this);
@@ -28,7 +28,7 @@ public class SetTextVariableStoneAmountTotal : MonoBehaviour
         _locString.StringReference.Remove("AmountTotal");
         _locString.StringReference.Add(
             "AmountTotal",
-            new IntVariable { Value = Refs.I.tappedStones[type].Count }
+            new IntVariable { Value = Refs.I.tappedStones[type.type].Count }
         );
         _locString.RefreshString();
     }

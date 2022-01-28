@@ -13,4 +13,9 @@ public class Switchboard : MonoBehaviour
     
     public void Insp_Retry() =>
         Refs.I.gc.Retry();
+    
+    public void Insp_ToggleStonePlacementMode(StoneTypeParameter type) =>
+        Refs.I.uic.StonePlacementMode = Refs.I.uic.StonePlacementMode == type.type
+            ? Stone.Type.None
+            : type.type;
 }

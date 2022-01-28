@@ -42,6 +42,7 @@ public class Refs : MonoBehaviour
     public Camera cam;
     public GameController gc;
     public PathingSystem ps;
+    public UIController uic;
 
     public Dictionary<Stone.Type, HashSet<Stone>> tappedStones = new Dictionary<Stone.Type, HashSet<Stone>>();
 

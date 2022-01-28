@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class OnAnyStonesTappedChanged : MonoBehaviour
 {
-    public Stone.Type type;
+    public StoneTypeParameter type;
     public UnityEvent onTapCountChangedToZero;
     public UnityEvent onTapCountChangedToNonZero;
 
@@ -16,7 +16,7 @@ public class OnAnyStonesTappedChanged : MonoBehaviour
 
     void Refresh()
     {
-        var numTapped = Refs.I.tappedStones[type].Count;
+        var numTapped = Refs.I.tappedStones[type.type].Count;
 
         if (numTapped == 0)
             onTapCountChangedToZero?.Invoke();
