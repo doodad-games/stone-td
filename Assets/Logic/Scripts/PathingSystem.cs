@@ -138,6 +138,10 @@ public class PathingSystem : MonoBehaviour
         return null;
     }
 
+    public bool IsPathable(Vector2Int coord) =>
+        _pathableTiles.Contains(coord) &&
+        GetBlocker(coord) == null;
+
     public void FinaliseStatics()
     {
         _staticsFinalised = true;
@@ -172,6 +176,8 @@ public class PathingSystem : MonoBehaviour
             Mathf.RoundToInt(worldPos.x),
             Mathf.RoundToInt(worldPos.y)
         );
+
+    public Vector3 CoordToWorldPos(Vector2Int coord) => new Vector3(coord.x, coord.y, 0);
 
     Vector2Int GetNextCoordDirectlyTowards(Vector3 curPos, Vector3 targetPos)
     {

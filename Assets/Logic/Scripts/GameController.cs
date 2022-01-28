@@ -81,6 +81,16 @@ public class GameController : MonoBehaviour
 
     public void Retry() =>
         SceneSwitcherSystem.I.ReloadCurrentScene();
+    
+    public void ConstructThing(Stone.Type type, Vector2Int coord)
+    {
+        var resourceName = Enum.GetName(typeof(Stone.Type), type);
+        Instantiate(
+            Resources.Load<GameObject>(resourceName),
+            Refs.I.ps.CoordToWorldPos(coord),
+            Quaternion.identity
+        );
+    }
 
     void DoTick()
     {

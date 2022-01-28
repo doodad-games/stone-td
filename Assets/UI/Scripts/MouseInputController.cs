@@ -4,6 +4,7 @@ public class MouseInputController : MonoBehaviour
 {
     MouseSupport _lastHovered;
     string _activeDragSelectType;
+    bool _isConstructingThings;
 
     void Update() => CheckConstructionInput();
 
@@ -33,18 +34,44 @@ public class MouseInputController : MonoBehaviour
                 _activeDragSelectType = mouseSupportComp.dragSelectType;
                 mouseSupportComp.BroadcastMessage("Msg_OnSelect");
             }
+            else if (Refs.I.uic.StonePlacementMode != Stone.Type.None)
+            {
+                var coord = GetMouseCoord(mousePos);
+                if (Refs.I.ps.IsPathable(coord))
+                {
+                    _isConstructingThings = true;
+                    Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                }
+            }
         }
         else if (Input.GetMouseButton(0))
         {
-            if (
-                mouseSupportComp != null &&
-                mouseSupportComp != _lastHovered &&
-                mouseSupportComp.dragSelectType == _activeDragSelectType
-            ) mouseSupportComp.BroadcastMessage("Msg_OnSelect");
+            if (mouseSupportComp != null)
+            {
+                if (
+                    mouseSupportComp != _lastHovered &&
+                    mouseSupportComp.dragSelectType == _activeDragSelectType
+                ) mouseSupportComp.BroadcastMessage("Msg_OnSelect");
+            }
+            else if (_isConstructingThings)
+            {
+                var coord = GetMouseCoord(mousePos);
+                if (Refs.I.ps.IsPathable(coord))
+                {
+                    _isConstructingThings = true;
+                    Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                }
+            }
         }
-        if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0))
+        {
             _activeDragSelectType = null;
+            _isConstructingThings = false;
+        }
 
         _lastHovered = mouseSupportComp;
     }
+
+    Vector2Int GetMouseCoord(Vector3 mousePos) =>
+        Refs.I.ps.WorldPosToCoord(mousePos - new Vector3(0.5f, 0.5f, 0));
 }

@@ -38,7 +38,7 @@ public class MoveToTarget : MonoBehaviour
     void SetNextPos()
     {
         _nextCoord = Refs.I.ps.GetNextMoveCoordToTarget(transform.position, _target);
-        _nextPos = new Vector3(_nextCoord.x, _nextCoord.y, 0);
+        _nextPos = Refs.I.ps.CoordToWorldPos(_nextCoord);
     }
     
     void Move()
