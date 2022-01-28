@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Switchboard : MonoBehaviour
 {
+    public void Insp_StartDefencePhase() =>
+        Refs.I.gc.StartDefencePhase();
+
     public void Insp_TogglePause() =>
         Refs.I.gc.TogglePause();
 

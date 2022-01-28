@@ -17,7 +17,21 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: f767aefe6c7304549854e274d388cee6, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 795781072830464
+    m_Localized: Defense Phase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 796556041797632
+    m_Localized: 'End the Construction Phase and begin the Defense Phase.
+
+      You
+      won''t be able to modify your defenses any more.
+
+
+      Shortcut: ` or ~'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

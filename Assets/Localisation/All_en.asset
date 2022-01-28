@@ -16,10 +16,11 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: f767aefe6c7304549854e274d388cee6, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 6390728359991050242
   m_TableData:
   - m_Id: 408023764992
-    m_Localized: 'Toggle play / pause mode
+    m_Localized: 'Toggle play / pause mode.
 
 
       Shortcut: ` or ~'
@@ -42,7 +43,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10062627901440
-    m_Localized: 'Jump forward in time
+    m_Localized: 'Jump forward in time.
 
 
       Shortcut: 1, 2 or 3'
@@ -61,11 +62,39 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 109693082271744
-    m_Localized: 'Shortcut: R
+    m_Localized: 'Can also be used any time during gameplay.
 
-      Can be used any time during gameplay'
+
+      Shortcut: R'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791573795848192
+    m_Localized: Level {LevelNumber}
+    m_Metadata:
+      m_Items:
+      - rid: 6390728359991050242
+  - m_Id: 795781072830464
+    m_Localized: Defence Phase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 796154441383936
+    m_Localized: Construction Phase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 796556041797632
+    m_Localized: 'End the Construction Phase and begin the Defence Phase.
+
+      You
+      won''t be able to modify your defences any more.
+
+
+      Shortcut: ` or ~'
     m_Metadata:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6390728359991050242
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0040eaa2eecf0200

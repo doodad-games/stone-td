@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public const int EXEC_ORDER = Refs.EXEC_ORDER + 1;
 
+    public static event Action onEnterDefencePhase;
     public static event Action onTick;
     public static event Action onPlayPauseToggled;
     public static event Action onGameOver;
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour
 
     public bool isGameOver;
     public float time;
+    public bool isDefencePhase;
 
     void OnEnable()
     {
@@ -29,8 +31,19 @@ public class GameController : MonoBehaviour
         Invader.onBroughtCrystalToCastle -= HandleBroughtCrystalToCastle;
     }
 
-    void FixedUpdate() =>
-        DoTick();
+    void FixedUpdate()
+    {
+        if (isDefencePhase)
+            DoTick();
+    }
+    
+    public void StartDefencePhase()
+    {
+        if (isDefencePhase)
+            return;
+        isDefencePhase = true;
+        onEnterDefencePhase?.Invoke();
+    }
     
     public void TogglePause()
     {

@@ -16,16 +16,26 @@ public class KeyboardInputController : MonoBehaviour
         if (Refs.I.gc.isGameOver)
             return;
 
-        if (
-            Input.GetKeyDown(KeyCode.BackQuote) ||
-            Input.GetKeyDown(KeyCode.Tilde)
-        ) Refs.I.gc.TogglePause();
+        if (Refs.I.gc.isDefencePhase)
+        {
+            if (
+                Input.GetKeyDown(KeyCode.BackQuote) ||
+                Input.GetKeyDown(KeyCode.Tilde)
+            ) Refs.I.gc.TogglePause();
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            Refs.I.gc.SkipAhead((int)(1 / Time.fixedDeltaTime));
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            Refs.I.gc.SkipAhead((int)(2 / Time.fixedDeltaTime));
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            Refs.I.gc.SkipAhead((int)(3 / Time.fixedDeltaTime));
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                Refs.I.gc.SkipAhead((int)(1 / Time.fixedDeltaTime));
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                Refs.I.gc.SkipAhead((int)(2 / Time.fixedDeltaTime));
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                Refs.I.gc.SkipAhead((int)(3 / Time.fixedDeltaTime));
+        }
+        else
+        {
+            if (
+                Input.GetKeyDown(KeyCode.BackQuote) ||
+                Input.GetKeyDown(KeyCode.Tilde)
+            ) Refs.I.gc.StartDefencePhase();
+        }
     }
 }

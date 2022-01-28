@@ -55,6 +55,22 @@ MonoBehaviour:
     m_Key: Tooltips - Retry Button
     m_Metadata:
       m_Items: []
+  - m_Id: 791573795848192
+    m_Key: Level Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 795781072830464
+    m_Key: Gameplay HUD - Defence Phase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 796154441383936
+    m_Key: Gameplay HUD - Construction Phase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 796556041797632
+    m_Key: Tooltips - End Construction Phase
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
