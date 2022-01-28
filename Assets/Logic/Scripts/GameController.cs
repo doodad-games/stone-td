@@ -39,20 +39,36 @@ public class GameController : MonoBehaviour
     
     public void StartDefencePhase()
     {
-        if (isDefencePhase)
+        if (!isDefencePhase)
+        {
+            Debug.LogError("Tried to start defence phase while in defence phase 🤔");
             return;
+        }
+
         isDefencePhase = true;
         onEnterDefencePhase?.Invoke();
     }
     
     public void TogglePause()
     {
+        if (!isDefencePhase)
+        {
+            Debug.LogError("Tried to toggle pause while in construction phase 🤔");
+            return;
+        }
+
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
         onPlayPauseToggled?.Invoke();
     }
     
     public void SkipAhead(int numTicks)
     {
+        if (!isDefencePhase)
+        {
+            Debug.LogError("Tried to skip ahead while in construction phase 🤔");
+            return;
+        }
+
         if (numTicks < 0)
         {
             Debug.LogException(new InvalidOperationException());

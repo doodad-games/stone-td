@@ -167,6 +167,12 @@ public class PathingSystem : MonoBehaviour
         return data[coord].nextPos;
     }
 
+    public Vector2Int WorldPosToCoord(Vector3 worldPos) =>
+        new Vector2Int(
+            Mathf.RoundToInt(worldPos.x),
+            Mathf.RoundToInt(worldPos.y)
+        );
+
     Vector2Int GetNextCoordDirectlyTowards(Vector3 curPos, Vector3 targetPos)
     {
         var dir = targetPos - curPos;
@@ -298,12 +304,6 @@ public class PathingSystem : MonoBehaviour
             SetNeighbourTileData(pathingData, coord);
         }
     }
-
-    Vector2Int WorldPosToCoord(Vector3 worldPos) =>
-        new Vector2Int(
-            Mathf.RoundToInt(worldPos.x),
-            Mathf.RoundToInt(worldPos.y)
-        );
 
     bool IsNeighbourBlocked(Vector2Int fromCoord, Vector2Int dir, Vector2Int targetCoord)
     {

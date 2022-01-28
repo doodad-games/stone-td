@@ -38,9 +38,14 @@ public class Refs : MonoBehaviour
     public HashSet<Crystal> Crystals { get; } = new HashSet<Crystal>();
     public HashSet<Invader> Invaders { get; } = new HashSet<Invader>();
 
+    public Camera cam;
     public GameController gc;
     public PathingSystem ps;
 
-    void OnEnable() => I = this;
+    void OnEnable()
+    {
+        I = this;
+        cam = Camera.main;
+    }
     void OnDisable() => I = null;
 }

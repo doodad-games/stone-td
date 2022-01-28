@@ -44,9 +44,6 @@ TagManager:
   - name: On Ground
     uniqueID: 2032223179
     locked: 0
-  - name: Outlines
-    uniqueID: 224222125
-    locked: 0
   - name: UI
     uniqueID: 2213046707
     locked: 0
