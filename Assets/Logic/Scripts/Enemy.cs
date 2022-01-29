@@ -9,13 +9,29 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
 
     public Transform[] hitLocations;
     public float hitLocationRadius;
-    public int life;
 
 #pragma warning disable CS0649
     [SerializeField] float _collisionRadius;
+    [SerializeField] int _life;
 #pragma warning restore CS0649
 
     public float CollisionRadius => _collisionRadius;
+
+    public int Life
+    {
+        get => _life;
+        set
+        {
+            if (value <= 0)
+            {
+                Die();
+                return;
+            }
+
+            _life = value;
+            onLifeChanged?.Invoke();
+        }
+    }
 
     void OnEnable() => Refs.I.Enemies.Add(this);
 
@@ -23,14 +39,6 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
     {
         if (Refs.I != null)
             Refs.I.Enemies.Remove(this);
-    }
-
-    public void TakeDamage(int amount)
-    {
-        if (life <= amount)
-            Die();
-        life -= amount;
-        onLifeChanged?.Invoke();
     }
 
     void Die()

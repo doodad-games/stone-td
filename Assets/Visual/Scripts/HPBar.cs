@@ -44,11 +44,11 @@ public class HPBar : MonoBehaviour
             return;
         }
 
-        var remainder = _enemy.life % NUM_PIXELS_WIDE;
+        var remainder = _enemy.Life % NUM_PIXELS_WIDE;
         _activeSection.gameObject.SetActive(remainder != 0);
         _activeScaler.localScale = new Vector3(remainder, 1, 1);
 
-        var multiplier = _enemy.life / NUM_PIXELS_WIDE;
+        var multiplier = _enemy.Life / NUM_PIXELS_WIDE;
         _multiplierSection.localScale = new Vector3(NUM_PIXELS_WIDE, multiplier, 1);
         _activeSection.localPosition = new Vector3(0, PIXEL_WIDTH * multiplier, 0);
     }

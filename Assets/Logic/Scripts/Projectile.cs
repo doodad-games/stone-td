@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
         var distSq = (transform.position - _targetLocation.position).sqrMagnitude;
         if (distSq < Mathf.Pow(reachRadius + _target.hitLocationRadius, 2))
         {
-            _target.TakeDamage(damageDealt);
+            _target.Life -= damageDealt;
             Destroy(gameObject);
         }
     }
