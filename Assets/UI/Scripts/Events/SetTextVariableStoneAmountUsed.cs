@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
-public class SetTextVariableStoneAmountTotal : MonoBehaviour
+public class SetTextVariableStoneAmountUsed : MonoBehaviour
 {
     public StoneTypeParameter type;
-    public string variableKey = "AmountTotal";
+    public string variableKey = "AmountUsed";
 
     LocalizeStringEvent _locString;
 
@@ -19,19 +19,23 @@ public class SetTextVariableStoneAmountTotal : MonoBehaviour
         }
 
         _locString = GetComponent<LocalizeStringEvent>();
-        Stone.onTappedJustChanged += HandleStoneTappedJustChanged;
+        Refs.onUsedTappedStonesChanged += HandleUsedTappedStonesChanged;
         Refresh();
     }
-    void OnDisable() => Stone.onTappedJustChanged -= HandleStoneTappedJustChanged;
+    void OnDisable() => Refs.onUsedTappedStonesChanged -= HandleUsedTappedStonesChanged;
 
-    void HandleStoneTappedJustChanged(Stone _) => Refresh();
+    void HandleUsedTappedStonesChanged(Stone.Type changedType)
+    {
+        if (changedType == type.type)
+            Refresh();
+    }
 
     void Refresh()
     {
         _locString.StringReference.Remove(variableKey);
         _locString.StringReference.Add(
             variableKey,
-            new IntVariable { Value = Refs.I.tappedStones[type.type].Count }
+            new IntVariable { Value = Refs.I.usedTappedStones[type.type] }
         );
         _locString.RefreshString();
     }

@@ -82,8 +82,18 @@ public class GameController : MonoBehaviour
     public void Retry() =>
         SceneSwitcherSystem.I.ReloadCurrentScene();
     
+    public bool CanConstructMore(Stone.Type type) =>
+        Refs.I.usedTappedStones[Refs.I.uic.StonePlacementMode] <
+        Refs.I.tappedStones[Refs.I.uic.StonePlacementMode].Count;
+    
     public void ConstructThing(Stone.Type type, Vector2Int coord)
     {
+        if (!CanConstructMore(type))
+        {
+            Debug.LogError($"Attempting to construct more {type} when all tapped stones have been exhausted! Ignoring");
+            return;
+        }
+
         var resourceName = Enum.GetName(typeof(Stone.Type), type);
         Instantiate(
             Resources.Load<GameObject>(resourceName),

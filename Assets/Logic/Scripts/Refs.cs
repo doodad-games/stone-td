@@ -7,6 +7,8 @@ public class Refs : MonoBehaviour
 {
     public const int EXEC_ORDER = -100;
 
+    public static event Action<Stone.Type> onUsedTappedStonesChanged;
+
     public static Refs I { get; private set; }
 
     public static Castle NearestCastle(Vector3 pos) =>
@@ -45,15 +47,35 @@ public class Refs : MonoBehaviour
     public UIController uic;
 
     public Dictionary<Stone.Type, HashSet<Stone>> tappedStones = new Dictionary<Stone.Type, HashSet<Stone>>();
+    public Dictionary<Stone.Type, int> usedTappedStones = new Dictionary<Stone.Type, int>();
 
     void OnEnable()
     {
         I = this;
         cam = Camera.main;
 
-        foreach (Stone.Type type in Enum.GetValues(typeof(Stone.Type)))
+        foreach (Stone.Type typeObj in Enum.GetValues(typeof(Stone.Type)))
+        {
+            var type = (Stone.Type)typeObj;
+
             if (type != Stone.Type.None)
-                tappedStones[(Stone.Type)type] = new HashSet<Stone>();
+            {
+                tappedStones[type] = new HashSet<Stone>();
+                usedTappedStones[type] = 0;
+            }
+        }
     }
     void OnDisable() => I = null;
+
+    public void UseTappedStone(Stone.Type type)
+    {
+        ++usedTappedStones[type];
+        onUsedTappedStonesChanged?.Invoke(type);
+    }
+
+    public void ReturnTappedStone(Stone.Type type)
+    {
+        --usedTappedStones[type];
+        onUsedTappedStonesChanged?.Invoke(type);
+    }
 }

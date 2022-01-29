@@ -7,7 +7,11 @@ public class MouseInputController : MonoBehaviour
     string _activeDragSelectType;
     bool _isConstructingThings;
 
+    void OnEnable() => Stone.onFailedToUntap += HandleFailedToUntapStone;
     void Update() => CheckConstructionInput();
+    void OnDisable() => Stone.onFailedToUntap -= HandleFailedToUntapStone;
+
+    void HandleFailedToUntapStone(Stone.Type type) => _activeDragSelectType = null;
 
     void CheckConstructionInput()
     {
@@ -41,11 +45,14 @@ public class MouseInputController : MonoBehaviour
                 }
                 else if (Refs.I.uic.StonePlacementMode != Stone.Type.None)
                 {
-                    var coord = GetMouseCoord(mousePos);
-                    if (Refs.I.ps.IsPathable(coord))
+                    if (Refs.I.gc.CanConstructMore(Refs.I.uic.StonePlacementMode))
                     {
-                        _isConstructingThings = true;
-                        Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                        var coord = GetMouseCoord(mousePos);
+                        if (Refs.I.ps.IsPathable(coord))
+                        {
+                            _isConstructingThings = true;
+                            Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                        }
                     }
                 }
             }
@@ -80,11 +87,14 @@ public class MouseInputController : MonoBehaviour
                 }
                 else if (_isConstructingThings)
                 {
-                    var coord = GetMouseCoord(mousePos);
-                    if (Refs.I.ps.IsPathable(coord))
+                    if (Refs.I.gc.CanConstructMore(Refs.I.uic.StonePlacementMode))
                     {
-                        _isConstructingThings = true;
-                        Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                        var coord = GetMouseCoord(mousePos);
+                        if (Refs.I.ps.IsPathable(coord))
+                        {
+                            _isConstructingThings = true;
+                            Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                        }
                     }
                 }
             }

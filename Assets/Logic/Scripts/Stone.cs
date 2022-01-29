@@ -4,6 +4,8 @@ using UnityEngine;
 public class Stone : MonoBehaviour
 {
     public static event Action<Stone> onTappedJustChanged;
+    public static event Action<Stone.Type> onFailedToUntap;
+
     public event Action onTappedChanged;
 
     [HideInInspector] public bool tapped;
@@ -13,6 +15,13 @@ public class Stone : MonoBehaviour
     {
         if (tapped == to)
             return;
+        
+        if (to == false && !Refs.I.gc.CanConstructMore(type))
+        {
+            onFailedToUntap?.Invoke(type);
+            return;
+        }
+
         tapped = to;
 
         if (tapped)
