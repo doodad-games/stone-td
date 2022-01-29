@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [DefaultExecutionOrder(EXEC_ORDER)]
@@ -9,7 +10,7 @@ public class GameController : MonoBehaviour
     public static event Action onEnterDefencePhase;
     public static event Action onTick;
     public static event Action onPlayPauseToggled;
-    public static event Action onGameOver;
+    public static event Action<bool> onGameOver;
 
     public bool IsPlaying => Time.timeScale != 0;
 
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
         Refs.I.gc = this;
 
         Invader.onBroughtCrystalToCastle += HandleBroughtCrystalToCastle;
+        Invader.onDied += HandleInvaderDied;
     }
     void OnDisable()
     {
@@ -29,6 +31,7 @@ public class GameController : MonoBehaviour
             Refs.I.gc = null;
 
         Invader.onBroughtCrystalToCastle -= HandleBroughtCrystalToCastle;
+        Invader.onDied -= HandleInvaderDied;
     }
 
     void FixedUpdate()
@@ -118,6 +121,18 @@ public class GameController : MonoBehaviour
     void HandleBroughtCrystalToCastle()
     {
         isGameOver = true;
-        onGameOver?.Invoke();
+        onGameOver?.Invoke(false);
+    }
+
+    void HandleInvaderDied()
+    {
+        if (
+            Refs.I.Invaders.Count == 0 &&
+            Refs.I.Spawners.All(_ => !_.IsStillSpawning)
+        )
+        {
+            isGameOver = true;
+            onGameOver?.Invoke(true);
+        }
     }
 }

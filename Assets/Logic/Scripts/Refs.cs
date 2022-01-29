@@ -40,6 +40,7 @@ public class Refs : MonoBehaviour
     public HashSet<Castle> Castles { get; } = new HashSet<Castle>();
     public HashSet<Crystal> Crystals { get; } = new HashSet<Crystal>();
     public HashSet<Invader> Invaders { get; } = new HashSet<Invader>();
+    public HashSet<Spawner> Spawners { get; } = new HashSet<Spawner>();
 
     public Camera cam;
     public GameController gc;

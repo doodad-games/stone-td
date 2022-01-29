@@ -36,7 +36,7 @@ public class EnemyPathToTarget : MonoBehaviour, IMovement
     }
 
     void HandleTick() => Move();
-    void HandleGameOver() => _didJustMove = false;
+    void HandleGameOver(bool _) => _didJustMove = false;
 
     void SetNextPos()
     {

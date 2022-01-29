@@ -42,10 +42,10 @@ public class Projectile : MonoBehaviour
         if (distSq < Mathf.Pow(reachRadius + _target.HitLocationRadius, 2))
         {
             var invader = _target as Invader;
-            if (invader?.isHoldingCrystal == true)
-                invader.DropCrystal();
+            if (invader != null)
+                invader.Die();
+            else Debug.LogError($"Projectile's not sure what it's supposed to destroy here 🤔 {invader.gameObject}", invader.gameObject);
 
-            Destroy(_target.gameObject);
             Destroy(gameObject);
         }
     }

@@ -10,6 +10,7 @@ public class Invader : MonoBehaviour, IEnemy
     const float TARGET_REFRESH_INTERVAL = 1f;
 
     public static event Action onBroughtCrystalToCastle;
+    public static event Action onDied;
 
     public Transform grabCrystalPoint;
 
@@ -54,8 +55,15 @@ public class Invader : MonoBehaviour, IEnemy
     
     public void ClearCrystalFollowerDistance() =>
         _movement.followDistance = 0f;
-    
-    public void DropCrystal() => targetCrystal.Drop();
+
+    public void Die()
+    {
+        if (isHoldingCrystal)
+            DropCrystal();
+
+        Destroy(gameObject);
+        onDied?.Invoke();
+    }
 
     void HandleTick()
     {
@@ -129,4 +137,6 @@ public class Invader : MonoBehaviour, IEnemy
         targetCrystal.HandleGrabbed(this);
         FindNearestCastle();
     }
+    
+    void DropCrystal() => targetCrystal.Drop();
 }

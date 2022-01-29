@@ -96,6 +96,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 6390728359991050242
+  - m_Id: 1141512123224064
+    m_Localized: Victory!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

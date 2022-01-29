@@ -75,6 +75,10 @@ MonoBehaviour:
     m_Key: Gameplay HUD - Stone Button Count
     m_Metadata:
       m_Items: []
+  - m_Id: 1141512123224064
+    m_Key: Gameplay HUD - Victory - Title
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

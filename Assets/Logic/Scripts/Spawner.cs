@@ -9,14 +9,23 @@ public class Spawner : MonoBehaviour
 
     int _spawnI;
 
+    public bool IsStillSpawning => _spawnI < toSpawn.Length;
+
     void OnEnable()
     {
         Array.Sort(toSpawn, (a, b) => a.time.CompareTo(b.time));
 
+        Refs.I.Spawners.Add(this);
         GameController.onTick += HandleTick;
     }
 
-    void OnDisable() => GameController.onTick -= HandleTick;
+    void OnDisable()
+    {
+        if (Refs.I != null)
+            Refs.I.Spawners.Remove(this);
+
+        GameController.onTick -= HandleTick;
+    }
 
     void HandleTick()
     {
