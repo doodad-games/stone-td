@@ -121,7 +121,7 @@ public class Stone : MonoBehaviour
                 otherStone != null &&
 
                 otherStone != this &&
-                _thisEnemy.IsInRadiusOf(otherStone._thisEnemy)
+                _thisEnemy.IsInRadiusOf(otherStone._thisEnemy, 2f)
             )
             {
                 if (_thisEnemy.Life >= otherStone._thisEnemy.Life)

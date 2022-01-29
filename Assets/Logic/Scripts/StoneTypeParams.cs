@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class StoneTypeParameter : MonoBehaviour
+public class StoneTypeParams : MonoBehaviour
 {
     public Stone.Type type;
 }

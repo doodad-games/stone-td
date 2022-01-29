@@ -38,12 +38,6 @@ public class HPBar : MonoBehaviour
     {
         _isDirty = false;
 
-        if (_enemy == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         var remainder = _enemy.Life % NUM_PIXELS_WIDE;
         _activeSection.gameObject.SetActive(remainder != 0);
         _activeScaler.localScale = new Vector3(remainder, 1, 1);

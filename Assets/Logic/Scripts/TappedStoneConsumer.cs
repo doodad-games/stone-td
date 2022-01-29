@@ -6,7 +6,7 @@ public class TappedStoneConsumer : MonoBehaviour
 {
     public const int EXEC_ORDER = PathingBlocker.EXEC_ORDER + 1;
 
-    public StoneTypeParameter type;
+    public StoneTypeParams type;
 
     void OnEnable() =>
         Refs.I.UseTappedStone(type.type);

@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class OnStonePlacementModeChanged : MonoBehaviour
 {
-    public StoneTypeParameter type;
+    public StoneTypeParams type;
     public UnityEvent onIsType;
     public UnityEvent onIsNotType;
 

@@ -472,6 +472,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Collider 1.5
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 24
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee280d2f6026384b82e597e7a1f9140
+      internalID: 270579625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collider 2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40102dd616369f441a295d7dfb9d9dcd
+      internalID: 425394959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collider 2.5
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 16
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccaf18b388246cb4f9e9c53e8f476c34
+      internalID: -1328010265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -484,6 +547,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Pixel BL: -1195752715
+      Collider 1.5: 270579625
       Tree Dead 3: -2123672400
       Pause: 473624087
       Play: -1386403125
@@ -492,9 +556,11 @@ TextureImporter:
       Collider 3: 1078936002
       Tree 2: -970295059
       Tree Dead 4: 1756975059
+      Collider 2.5: -1328010265
       Stone Spike 2 Outline: 1088923655
       Stone Wall 2 Static: 687706700
       Stone Wall 2 Outline: -1468790269
+      Collider 2: 425394959
       Tree 1: 1427560564
       Wall Outline: -1043922046
       Stone Wall 1 Static: 604388417

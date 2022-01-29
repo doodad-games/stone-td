@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class OnAnyStonesTappedChanged : MonoBehaviour
 {
-    public StoneTypeParameter type;
+    public StoneTypeParams type;
     public UnityEvent onTapCountChangedToZero;
     public UnityEvent onTapCountChangedToNonZero;
 

@@ -4,7 +4,7 @@ using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class SetTextVariableStoneAmountUsed : MonoBehaviour
 {
-    public StoneTypeParameter type;
+    public StoneTypeParams type;
     public string variableKey = "AmountUsed";
 
     LocalizeStringEvent _locString;

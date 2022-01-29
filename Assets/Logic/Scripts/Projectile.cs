@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     {
         _initd = true;
         _target = target;
-        _targetLocation = target.hitLocations.PickRandom();
+        _targetLocation = target.projectileTargetParams.hitLocations.PickRandom();
 
         GetComponent<MoveToTarget>().target = _targetLocation;
     }
@@ -40,7 +40,7 @@ public class Projectile : MonoBehaviour
         }
 
         var distSq = (transform.position - _targetLocation.position).sqrMagnitude;
-        if (distSq < Mathf.Pow(reachRadius + _target.hitLocationRadius, 2))
+        if (distSq < Mathf.Pow(reachRadius + _target.projectileTargetParams.hitLocationRadius, 2))
         {
             _target.Life -= damageDealt;
             Destroy(gameObject);
