@@ -3,9 +3,12 @@ using UnityEngine.Events;
 
 public class OnAnyStonesTappedChanged : MonoBehaviour
 {
-    public StoneTypeParams type;
-    public UnityEvent onTapCountChangedToZero;
-    public UnityEvent onTapCountChangedToNonZero;
+    [Tooltip("The number tapped from each type will be summed together")]
+    public StoneTypeParams[] types;
+    public int threshold = 1;
+    public UnityEvent onCountDidntReachThreshold;
+    public UnityEvent onCountReachedThreshold;
+    public bool countNumberOfDifferentTypesUsed;
 
     void OnEnable()
     {
@@ -18,10 +21,18 @@ public class OnAnyStonesTappedChanged : MonoBehaviour
 
     void Refresh()
     {
-        var numTapped = Refs.I.tappedStones[type.type].Count;
+        var result = 0;
+        foreach (var type in types)
+        {
+            var count = Refs.I.tappedStones[type.type].Count;
+            if (count != 0)
+                result += countNumberOfDifferentTypesUsed
+                    ? 1
+                    : count;
+        }
 
-        if (numTapped == 0)
-            onTapCountChangedToZero?.Invoke();
-        else onTapCountChangedToNonZero?.Invoke();
+        if (result < threshold)
+            onCountDidntReachThreshold?.Invoke();
+        else onCountReachedThreshold?.Invoke();
     }
 }

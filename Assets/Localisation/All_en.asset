@@ -104,6 +104,21 @@ MonoBehaviour:
     m_Localized: The Stones got revenge!
     m_Metadata:
       m_Items: []
+  - m_Id: 1348525914624000
+    m_Localized: 'You need to construct some Towers before you can progress.
+
+      Tap
+      some Stones to get started with construction.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1349755902660608
+    m_Localized: Try tapping a different type of Stone...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1352583857606656
+    m_Localized: Tap on the mysterious Stones for resources to build Walls and Towers.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

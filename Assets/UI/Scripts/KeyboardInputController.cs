@@ -35,7 +35,11 @@ public class KeyboardInputController : MonoBehaviour
             if (
                 Input.GetKeyDown(KeyCode.BackQuote) ||
                 Input.GetKeyDown(KeyCode.Tilde)
-            ) Refs.I.gc.StartDefencePhase();
+            )
+            {
+                if (Refs.I.Towers.Count != 0)
+                    Refs.I.gc.StartDefencePhase();
+            }
         }
     }
 }

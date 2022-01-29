@@ -83,6 +83,18 @@ MonoBehaviour:
     m_Key: Gameplay HUD - Game Over - Reason - Crystal Broken
     m_Metadata:
       m_Items: []
+  - m_Id: 1348525914624000
+    m_Key: Tooltips - End Construction Phase Disabled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1349755902660608
+    m_Key: Gameplay HUD - Tap Something Else Instruction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1352583857606656
+    m_Key: Gameplay HUD - Tap Anything Instruction
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
