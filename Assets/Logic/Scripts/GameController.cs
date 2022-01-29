@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ public class GameController : MonoBehaviour
     public static event Action onPlayPauseToggled;
     public static event Action onStonesAwakened;
     public static event Action<GameOverReason> onGameOver;
+
+    static Dictionary<Stone.Type, int> _tapValueOverrides = new Dictionary<Stone.Type, int>
+    {
+        { Stone.Type.Wall, 3 }
+    };
 
     public bool IsPlaying => Time.timeScale != 0;
 
@@ -90,7 +96,13 @@ public class GameController : MonoBehaviour
         SceneSwitcherSystem.I.ReloadCurrentScene();
     
     public bool CanConstructMore(Stone.Type type) =>
-        Refs.I.usedTappedStones[type] < Refs.I.tappedStones[type].Count;
+        Refs.I.usedTappedStones[type] < GetAmountTapped(type);
+    
+    public bool CanUntapStone(Stone stone)
+    {
+        var remainingAfterUntap = GetAmountTapped(stone.type) - GetTapValue(stone.type);
+        return Refs.I.usedTappedStones[stone.type] <= remainingAfterUntap;
+    }
     
     public void ConstructThing(Stone.Type type, Vector2Int coord)
     {
@@ -107,6 +119,12 @@ public class GameController : MonoBehaviour
             Quaternion.identity
         );
     }
+
+    public int GetAmountTapped(Stone.Type type) =>
+        Refs.I.tappedStones[type].Count * GetTapValue(type);
+
+    public int GetTapValue(Stone.Type type) =>
+        _tapValueOverrides.ContainsKey(type) ? _tapValueOverrides[type] : 1;
 
     void DoTick()
     {

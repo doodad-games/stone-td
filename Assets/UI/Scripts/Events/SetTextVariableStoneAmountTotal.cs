@@ -31,7 +31,7 @@ public class SetTextVariableStoneAmountTotal : MonoBehaviour
         _locString.StringReference.Remove(variableKey);
         _locString.StringReference.Add(
             variableKey,
-            new IntVariable { Value = Refs.I.tappedStones[type.type].Count }
+            new IntVariable { Value = Refs.I.gc.GetAmountTapped(type.type) }
         );
         _locString.RefreshString();
     }

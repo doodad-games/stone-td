@@ -13,9 +13,10 @@ public class Stone : MonoBehaviour
 
     public event Action onTappedChanged;
 
+    public Type type;
+
     [HideInInspector] public bool tapped;
     [HideInInspector] public bool isAwakened;
-    public Type type;
 
     Enemy _thisEnemy;
     EnemyPathToTarget _movement;
@@ -40,7 +41,7 @@ public class Stone : MonoBehaviour
         if (tapped == to)
             return;
         
-        if (to == false && !Refs.I.gc.CanConstructMore(type))
+        if (to == false && !Refs.I.gc.CanUntapStone(this))
         {
             onFailedToUntap?.Invoke(type);
             return;
