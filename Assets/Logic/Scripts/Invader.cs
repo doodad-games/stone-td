@@ -37,12 +37,15 @@ public class Invader : MonoBehaviour
     void OnDisable()
     {
         if (Refs.I != null)
+        {
             Refs.I.Invaders.Remove(this);
+
+            if (isHoldingCrystal && targetCrystal != null)
+                DropCrystal();
+        }
 
         GameController.onTick -= HandleTick;
 
-        if (isHoldingCrystal && targetCrystal != null)
-            DropCrystal();
     }
 
     public void SetCrystalFollowDistance(int followerI) =>
