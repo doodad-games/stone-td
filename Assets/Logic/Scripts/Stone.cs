@@ -15,6 +15,10 @@ public class Stone : MonoBehaviour
 
     public Type type;
 
+#pragma warning disable CS0649
+    [SerializeField] GameObject _hpBar;
+#pragma warning restore CS0649
+
     [HideInInspector] public bool tapped;
     [HideInInspector] public bool isAwakened;
 
@@ -30,6 +34,7 @@ public class Stone : MonoBehaviour
         _thisEnemy = GetComponent<Enemy>();
         _movement = GetComponent<EnemyPathToTarget>();
         _blocker = GetComponent<PathingBlocker>();
+        _hpBar.SetActive(false);
 
         GameController.onTick += HandleTick;
     }
@@ -68,6 +73,7 @@ public class Stone : MonoBehaviour
         _thisEnemy.enabled = true;
         _movement.enabled = true;
         _blocker.enabled = false;
+        _hpBar.SetActive(true);
         isAwakened = true;
     }
 
