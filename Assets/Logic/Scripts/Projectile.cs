@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public const int EXEC_ORDER = MoveToTarget.EXEC_ORDER + 1;
 
     public float reachRadius;
+    public int damageDealt;
 
     MoveToTarget _movement;
 
@@ -41,7 +42,7 @@ public class Projectile : MonoBehaviour
         var distSq = (transform.position - _targetLocation.position).sqrMagnitude;
         if (distSq < Mathf.Pow(reachRadius + _target.hitLocationRadius, 2))
         {
-            _target.Die();
+            _target.TakeDamage(damageDealt);
             Destroy(gameObject);
         }
     }
