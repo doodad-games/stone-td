@@ -12,7 +12,7 @@ public class FireProjectilesAtEnemies : MonoBehaviour, IHasCollisionRadius
 
     public float CollisionRadius => radius;
 
-    IEnemy _target;
+    Enemy _target;
     float _nextShotAfter;
 
     void OnEnable() => GameController.onTick += HandleTick;
@@ -42,12 +42,12 @@ public class FireProjectilesAtEnemies : MonoBehaviour, IHasCollisionRadius
     {
         var thisPos = transform.position;
         float closestDistSq = Mathf.Infinity;
-        foreach (var invader in Refs.I.Invaders)
+        foreach (var enemy in Refs.I.Enemies)
         {
-            var distSq = (thisPos - invader.transform.position).sqrMagnitude;
+            var distSq = (thisPos - enemy.transform.position).sqrMagnitude;
             if (distSq < closestDistSq)
             {
-                _target = invader;
+                _target = enemy;
                 closestDistSq = distSq;
             }
         }

@@ -1,41 +1,33 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 [RequireComponent(typeof(EnemyPathToTarget))]
 [DefaultExecutionOrder(EXEC_ORDER)]
-public class Invader : MonoBehaviour, IEnemy
+public class Invader : MonoBehaviour
 {
     public const int EXEC_ORDER = 10; // Non-zero to give things space to execute before it
 
     const float TARGET_REFRESH_INTERVAL = 1f;
 
     public static event Action onBroughtCrystalToCastle;
-    public static event Action onDied;
 
     public Transform grabCrystalPoint;
-
-#pragma warning disable CS0649
-    [SerializeField] float _collisionRadius;
-    [SerializeField] Transform[] _hitLocations;
-    [SerializeField] float _hitLocationRadius;
-#pragma warning restore CS0649
 
     [HideInInspector] public Crystal targetCrystal;
     [HideInInspector] public bool wasSpawned;
     [HideInInspector] public bool isHoldingCrystal;
 
+    Enemy _thisEnemy;
     EnemyPathToTarget _movement;
 
     Castle _targetCastle;
     float _nextTargetTime;
 
-    public float CollisionRadius => _collisionRadius;
-    public Transform[] HitLocations => _hitLocations;
-    public float HitLocationRadius => _hitLocationRadius;
-
     void OnEnable()
     {
         Refs.I.Invaders.Add(this);
+        _thisEnemy = GetComponent<Enemy>();
         _movement = GetComponent<EnemyPathToTarget>();
         FindMovementTarget();
 
@@ -48,6 +40,9 @@ public class Invader : MonoBehaviour, IEnemy
             Refs.I.Invaders.Remove(this);
 
         GameController.onTick -= HandleTick;
+
+        if (isHoldingCrystal && targetCrystal != null)
+            DropCrystal();
     }
 
     public void SetCrystalFollowDistance(int followerI) =>
@@ -55,15 +50,6 @@ public class Invader : MonoBehaviour, IEnemy
     
     public void ClearCrystalFollowerDistance() =>
         _movement.followDistance = 0f;
-
-    public void Die()
-    {
-        if (isHoldingCrystal)
-            DropCrystal();
-
-        Destroy(gameObject);
-        onDied?.Invoke();
-    }
 
     void HandleTick()
     {
@@ -118,7 +104,7 @@ public class Invader : MonoBehaviour, IEnemy
     bool HasReachedCastle() =>
         isHoldingCrystal &&
         _targetCastle != null &&
-        _targetCastle.IsInRadiusOf(this) == true;
+        _targetCastle.IsInRadiusOf(_thisEnemy) == true;
     
     void HandleReachedCastle()
     {
@@ -129,7 +115,7 @@ public class Invader : MonoBehaviour, IEnemy
     bool HasReachedCrystal() =>
         targetCrystal != null &&
         targetCrystal.carriedBy == null &&
-        targetCrystal.IsInRadiusOf(this) == true;
+        targetCrystal.IsInRadiusOf(_thisEnemy) == true;
     
     void HandleReachedCrystal()
     {

@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public static event Action onEnterDefencePhase;
     public static event Action onTick;
     public static event Action onPlayPauseToggled;
+    public static event Action onStonesAwakened;
     public static event Action<bool> onGameOver;
 
     public bool IsPlaying => Time.timeScale != 0;
@@ -17,13 +18,14 @@ public class GameController : MonoBehaviour
     public bool isGameOver;
     public float time;
     public bool isDefencePhase;
+    public bool haveStonesAwakened;
 
     void OnEnable()
     {
         Refs.I.gc = this;
 
         Invader.onBroughtCrystalToCastle += HandleBroughtCrystalToCastle;
-        Invader.onDied += HandleInvaderDied;
+        Enemy.onAnyDied += HandleEnemyDied;
     }
     void OnDisable()
     {
@@ -31,7 +33,7 @@ public class GameController : MonoBehaviour
             Refs.I.gc = null;
 
         Invader.onBroughtCrystalToCastle -= HandleBroughtCrystalToCastle;
-        Invader.onDied -= HandleInvaderDied;
+        Enemy.onAnyDied -= HandleEnemyDied;
     }
 
     void FixedUpdate()
@@ -124,15 +126,29 @@ public class GameController : MonoBehaviour
         onGameOver?.Invoke(false);
     }
 
-    void HandleInvaderDied()
+    void HandleEnemyDied()
     {
         if (
-            Refs.I.Invaders.Count == 0 &&
+            Refs.I.Enemies.Count == 0 &&
             Refs.I.Spawners.All(_ => !_.IsStillSpawning)
         )
         {
-            isGameOver = true;
-            onGameOver?.Invoke(true);
+            if (haveStonesAwakened)
+            {
+                isGameOver = true;
+                onGameOver?.Invoke(true);
+            }
+            else AwakenStones();
         }
+    }
+
+    void AwakenStones()
+    {
+        haveStonesAwakened = true;
+        foreach (var pair in Refs.I.tappedStones)
+            foreach (var stone in pair.Value)
+                stone.Awaken();
+        
+        onStonesAwakened?.Invoke();
     }
 }

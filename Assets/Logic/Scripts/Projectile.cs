@@ -12,17 +12,17 @@ public class Projectile : MonoBehaviour
     MoveToTarget _movement;
 
     bool _initd;
-    IEnemy _target;
+    Enemy _target;
     Transform _targetLocation;
 
     void OnEnable() => GameController.onTick += HandleTick;
     void OnDisable() => GameController.onTick -= HandleTick;
 
-    public void Init(IEnemy target)
+    public void Init(Enemy target)
     {
         _initd = true;
         _target = target;
-        _targetLocation = target.HitLocations.PickRandom();
+        _targetLocation = target.hitLocations.PickRandom();
 
         GetComponent<MoveToTarget>().target = _targetLocation;
     }
@@ -39,13 +39,9 @@ public class Projectile : MonoBehaviour
         }
 
         var distSq = (transform.position - _targetLocation.position).sqrMagnitude;
-        if (distSq < Mathf.Pow(reachRadius + _target.HitLocationRadius, 2))
+        if (distSq < Mathf.Pow(reachRadius + _target.hitLocationRadius, 2))
         {
-            var invader = _target as Invader;
-            if (invader != null)
-                invader.Die();
-            else Debug.LogError($"Projectile's not sure what it's supposed to destroy here 🤔 {invader.gameObject}", invader.gameObject);
-
+            _target.Die();
             Destroy(gameObject);
         }
     }

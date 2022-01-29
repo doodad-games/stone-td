@@ -8,7 +8,6 @@ public class EnemyPathToTarget : MonoBehaviour, IMovement
     [SerializeField] float _speed;
 #pragma warning restore CS0649
 
-
     IPathingTarget _target;
     Vector2Int _nextCoord;
     Vector3 _nextPos;
