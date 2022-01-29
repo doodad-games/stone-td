@@ -3,22 +3,24 @@ using UnityEngine;
 
 public class Stone : MonoBehaviour
 {
-    public static event Action onAnyTappedChanged;
+    public static event Action<Stone> onTappedJustChanged;
     public event Action onTappedChanged;
 
     [HideInInspector] public bool tapped;
     public Type type;
 
-    public void Insp_ToggleTapped()
+    public void Insp_SetTapped(bool to)
     {
-        tapped = !tapped;
+        if (tapped == to)
+            return;
+        tapped = to;
 
         if (tapped)
             Refs.I.tappedStones[type].Add(this);
         else Refs.I.tappedStones[type].Remove(this);
 
         onTappedChanged?.Invoke();
-        onAnyTappedChanged?.Invoke();
+        onTappedJustChanged?.Invoke(this);
     }
 
     [Serializable]

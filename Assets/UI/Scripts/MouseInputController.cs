@@ -3,6 +3,7 @@ using UnityEngine;
 public class MouseInputController : MonoBehaviour
 {
     MouseSupport _lastHovered;
+    MouseMode _activeMouseMode;
     string _activeDragSelectType;
     bool _isConstructingThings;
 
@@ -27,46 +28,86 @@ public class MouseInputController : MonoBehaviour
                 mouseSupportComp.BroadcastMessage("Msg_OnHoverEnter");
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (_activeMouseMode == MouseMode.None)
         {
-            if (mouseSupportComp != null)
+            if (Input.GetMouseButtonDown(0))
             {
-                _activeDragSelectType = mouseSupportComp.dragSelectType;
-                mouseSupportComp.BroadcastMessage("Msg_OnSelect");
-            }
-            else if (Refs.I.uic.StonePlacementMode != Stone.Type.None)
-            {
-                var coord = GetMouseCoord(mousePos);
-                if (Refs.I.ps.IsPathable(coord))
+                _activeMouseMode = MouseMode.LeftClick;
+
+                if (mouseSupportComp != null)
                 {
-                    _isConstructingThings = true;
-                    Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                    _activeDragSelectType = mouseSupportComp.dragSelectType;
+                    mouseSupportComp.BroadcastMessage("Msg_OnLeftClick");
+                }
+                else if (Refs.I.uic.StonePlacementMode != Stone.Type.None)
+                {
+                    var coord = GetMouseCoord(mousePos);
+                    if (Refs.I.ps.IsPathable(coord))
+                    {
+                        _isConstructingThings = true;
+                        Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                    }
+                }
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                _activeMouseMode = MouseMode.RightClick;
+
+                if (mouseSupportComp != null)
+                {
+                    _activeDragSelectType = mouseSupportComp.dragSelectType;
+                    mouseSupportComp.BroadcastMessage("Msg_OnRightClick");
                 }
             }
         }
-        else if (Input.GetMouseButton(0))
+        else if (_activeMouseMode == MouseMode.LeftClick)
         {
-            if (mouseSupportComp != null)
+            if (Input.GetMouseButtonUp(0))
             {
-                if (
-                    mouseSupportComp != _lastHovered &&
-                    mouseSupportComp.dragSelectType == _activeDragSelectType
-                ) mouseSupportComp.BroadcastMessage("Msg_OnSelect");
+                _activeMouseMode = MouseMode.None;
+
+                _activeDragSelectType = null;
+                _isConstructingThings = false;
             }
-            else if (_isConstructingThings)
+            else
             {
-                var coord = GetMouseCoord(mousePos);
-                if (Refs.I.ps.IsPathable(coord))
+                if (mouseSupportComp != null)
                 {
-                    _isConstructingThings = true;
-                    Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                    if (
+                        mouseSupportComp != _lastHovered &&
+                        mouseSupportComp.dragSelectType == _activeDragSelectType
+                    ) mouseSupportComp.BroadcastMessage("Msg_OnLeftClick");
+                }
+                else if (_isConstructingThings)
+                {
+                    var coord = GetMouseCoord(mousePos);
+                    if (Refs.I.ps.IsPathable(coord))
+                    {
+                        _isConstructingThings = true;
+                        Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                    }
                 }
             }
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (_activeMouseMode == MouseMode.RightClick)
         {
-            _activeDragSelectType = null;
-            _isConstructingThings = false;
+            if (Input.GetMouseButtonUp(1))
+            {
+                _activeMouseMode = MouseMode.None;
+
+                _activeDragSelectType = null;
+                _isConstructingThings = false;
+            }
+            else
+            {
+                if (mouseSupportComp != null)
+                {
+                    if (
+                        mouseSupportComp != _lastHovered &&
+                        mouseSupportComp.dragSelectType == _activeDragSelectType
+                    ) mouseSupportComp.BroadcastMessage("Msg_OnRightClick");
+                }
+            }
         }
 
         _lastHovered = mouseSupportComp;
@@ -74,4 +115,11 @@ public class MouseInputController : MonoBehaviour
 
     Vector2Int GetMouseCoord(Vector3 mousePos) =>
         Refs.I.ps.WorldPosToCoord(mousePos - new Vector3(0.5f, 0.5f, 0));
+    
+    enum MouseMode
+    {
+        None,
+        LeftClick,
+        RightClick
+    }
 }

@@ -30,6 +30,9 @@ public class Wall : MonoBehaviour
             ReconnectNeighbourVisuals();
     }
 
+    public void Insp_SelfDestruct() =>
+        Destroy(gameObject);
+
     void RefreshNeighbours()
     {
         _neighbours[0] = Refs.I.ps.GetBlocker(_coord + Vector2Int.up)?.GetComponent<Wall>();

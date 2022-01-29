@@ -9,10 +9,12 @@ public class OnAnyStonesTappedChanged : MonoBehaviour
 
     void OnEnable()
     {
-        Stone.onAnyTappedChanged += Refresh;
+        Stone.onTappedJustChanged += HandleStoneTappedJustChanged;
         Refresh();
     }
-    void OnDisable() => Stone.onAnyTappedChanged -= Refresh;
+    void OnDisable() => Stone.onTappedJustChanged -= HandleStoneTappedJustChanged;
+
+    void HandleStoneTappedJustChanged(Stone _) => Refresh();
 
     void Refresh()
     {

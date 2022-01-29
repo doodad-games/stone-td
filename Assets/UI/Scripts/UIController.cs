@@ -21,21 +21,22 @@ public class UIController : MonoBehaviour
     void OnEnable()
     {
         Refs.I.uic = this;
-        Stone.onAnyTappedChanged += HandleStoneTapsChanged;
+        Stone.onTappedJustChanged += HandleStoneTappedJustChanged;
     }
     void OnDisable()
     {
         if (Refs.I != null)
             Refs.I.uic = this;
-        Stone.onAnyTappedChanged -= HandleStoneTapsChanged;
+        Stone.onTappedJustChanged -= HandleStoneTappedJustChanged;
     }
 
-    void HandleStoneTapsChanged()
+    void HandleStoneTappedJustChanged(Stone stone)
     {
-        if (_stonePlacementMode == Stone.Type.None)
-            return;
-
-        if (Refs.I.tappedStones[_stonePlacementMode].Count == 0)
-            StonePlacementMode = Stone.Type.None;
+        if (stone.tapped)
+            StonePlacementMode = stone.type;
+        else if (
+            StonePlacementMode != stone.type ||
+            Refs.I.tappedStones[stone.type].Count == 0
+        ) StonePlacementMode = Stone.Type.None;
     }
 }

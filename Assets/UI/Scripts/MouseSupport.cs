@@ -15,10 +15,12 @@ public class MouseSupport : MonoBehaviour
 
     public UnityEvent onHoverEnter;
     public UnityEvent onHoverExit;
-    public UnityEvent onSelect;
+    public UnityEvent onLeftClick;
+    public UnityEvent onRightClick;
 
 
     void Msg_OnHoverEnter() => onHoverEnter?.Invoke();
     void Msg_OnHoverExit() => onHoverExit?.Invoke();
-    void Msg_OnSelect() => onSelect?.Invoke();
+    void Msg_OnLeftClick() => onLeftClick?.Invoke();
+    void Msg_OnRightClick() => onRightClick?.Invoke();
 }
