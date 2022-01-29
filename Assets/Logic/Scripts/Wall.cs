@@ -18,8 +18,6 @@ public class Wall : MonoBehaviour
     void Awake() => _coreVisuals.SetActive(false);
     void OnEnable()
     {
-        Refs.I.UseTappedStone(Stone.Type.Wall);
-
         _coord = Refs.I.ps.WorldPosToCoord(transform.position);
 
         ReconnectVisuals();
@@ -28,17 +26,9 @@ public class Wall : MonoBehaviour
 
     void OnDisable()
     {
-        if (Refs.I != null)
-        {
-            Refs.I.ReturnTappedStone(Stone.Type.Wall);
-
-            if (Refs.I.ps != null)
-                ReconnectNeighbourVisuals();
-        }
+        if (Refs.I != null && Refs.I.ps != null)
+            ReconnectNeighbourVisuals();
     }
-
-    public void Insp_SelfDestruct() =>
-        Destroy(gameObject);
 
     void RefreshNeighbours()
     {

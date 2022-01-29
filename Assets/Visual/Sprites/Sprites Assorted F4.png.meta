@@ -871,6 +871,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Spike F1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a435e4bf06117d4d8ddf6b7302b58f4
+      internalID: 1227907037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike F2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ab0f1d8d63a23439be8fb9f8c3e764
+      internalID: -969169681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike F3
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3dd2c8d68518e14bb5af16b89526fa4
+      internalID: -1605252921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike F4
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe4fa47d1b75ef499755b3e52b8f1da
+      internalID: -1511846673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -882,7 +966,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Spike F4: -1511846673
       Stone Wall 2 Static F1: 1667720422
+      Spike F2: -969169681
       Stone Spike 1 F4: 597273874
       Soldier F3: -1567717006
       Stone Spike 1 F3: -670538441
@@ -898,6 +984,7 @@ TextureImporter:
       Stone Spike 2 F4: -912714655
       Stone Wall 2 Static F2: -442712783
       Stone Wall 2 F4: 2101519299
+      Spike F1: 1227907037
       Stone Wall 1 Static F2: -385645757
       Stone Wall 1 Static F1: -908473172
       Stone Spike 1 Static F1: -966936695
@@ -916,6 +1003,7 @@ TextureImporter:
       Solider F1: -1738835796
       Stone Spike 2 Static F1: -1584581802
       Stone Spike 2 Static F4: -1218551150
+      Spike F3: -1605252921
       Soldier F4: -432115713
       Stone Spike 1 Static F4: 1714229718
   spritePackingTag: 
