@@ -451,6 +451,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Projectile Spike
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8065e03018caa2a44a50d49a64f1d1b5
+      internalID: 1136861435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -477,6 +498,7 @@ TextureImporter:
       Wall: 1500765069
       Water 1: 2129301659
       Sprites 8x8_0: -1676664747
+      Projectile Spike: 1136861435
       Water 2: -555846283
   spritePackingTag: 
   pSDRemoveMatte: 0

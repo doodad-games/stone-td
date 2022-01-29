@@ -42,6 +42,15 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius, IPathingTarget
         RefreshCarrierFollowerDistances();
     }
 
+    public void Drop()
+    {
+        _collision.SetActive(true);
+        transform.SetParent(null, false);
+        transform.position = carriedBy.transform.position;
+        carriedBy = null;
+        ResetFollowerDistances();
+    }
+
     void HandleTick() => MaybeRefreshCarrierFollowerDistances();
 
     void MaybeRefreshCarrierFollowerDistances()
@@ -71,6 +80,15 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius, IPathingTarget
             
             follower.SetCrystalFollowDistance(followerI);
             ++followerI;
+        }
+    }
+
+    void ResetFollowerDistances()
+    {
+        foreach (var invader in Refs.I.Invaders)
+        {
+            if (invader.targetCrystal == this)
+                invader.ClearCrystalFollowerDistance();
         }
     }
 }

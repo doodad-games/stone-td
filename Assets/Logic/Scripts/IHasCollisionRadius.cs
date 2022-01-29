@@ -2,6 +2,7 @@ using UnityEngine;
 
 public interface IHasCollisionRadius
 {
+    GameObject gameObject { get; }
     Transform transform { get; }
     public float CollisionRadius { get; }
 }

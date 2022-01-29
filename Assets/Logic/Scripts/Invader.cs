@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyPathToTarget))]
 [DefaultExecutionOrder(EXEC_ORDER)]
-public class Invader : MonoBehaviour, IHasCollisionRadius
+public class Invader : MonoBehaviour, IEnemy
 {
     public const int EXEC_ORDER = 10; // Non-zero to give things space to execute before it
 
@@ -14,23 +15,27 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
 
 #pragma warning disable CS0649
     [SerializeField] float _collisionRadius;
+    [SerializeField] Transform[] _hitLocations;
+    [SerializeField] float _hitLocationRadius;
 #pragma warning restore CS0649
 
     [HideInInspector] public Crystal targetCrystal;
     [HideInInspector] public bool wasSpawned;
+    [HideInInspector] public bool isHoldingCrystal;
 
-    MoveToTarget _movement;
+    EnemyPathToTarget _movement;
 
     Castle _targetCastle;
     float _nextTargetTime;
-    bool _isHoldingCrystal;
 
     public float CollisionRadius => _collisionRadius;
+    public Transform[] HitLocations => _hitLocations;
+    public float HitLocationRadius => _hitLocationRadius;
 
     void OnEnable()
     {
         Refs.I.Invaders.Add(this);
-        _movement = GetComponent<MoveToTarget>();
+        _movement = GetComponent<EnemyPathToTarget>();
         FindMovementTarget();
 
         GameController.onTick += HandleTick;
@@ -46,12 +51,17 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
 
     public void SetCrystalFollowDistance(int followerI) =>
         _movement.followDistance = Calcs.CrystalCarrierFollowDistance(followerI);
+    
+    public void ClearCrystalFollowerDistance() =>
+        _movement.followDistance = 0f;
+    
+    public void DropCrystal() => targetCrystal.Drop();
 
     void HandleTick()
     {
         MaybeRefreshMovementTarget();
 
-        if (_isHoldingCrystal)
+        if (isHoldingCrystal)
         {
             if (HasReachedCastle())
                 HandleReachedCastle();
@@ -73,7 +83,7 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
     {
         _nextTargetTime = Refs.I.gc.time + TARGET_REFRESH_INTERVAL;
 
-        if (_isHoldingCrystal)
+        if (isHoldingCrystal)
             FindNearestCastle();
         else FindNearestCrystal();
     }
@@ -98,7 +108,7 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
     }
 
     bool HasReachedCastle() =>
-        _isHoldingCrystal &&
+        isHoldingCrystal &&
         _targetCastle != null &&
         _targetCastle.IsInRadiusOf(this) == true;
     
@@ -115,7 +125,7 @@ public class Invader : MonoBehaviour, IHasCollisionRadius
     
     void HandleReachedCrystal()
     {
-        _isHoldingCrystal = true;
+        isHoldingCrystal = true;
         targetCrystal.HandleGrabbed(this);
         FindNearestCastle();
     }

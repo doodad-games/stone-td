@@ -9,7 +9,7 @@ public class SetAnimMovementProperties : MonoBehaviour
     public string didJustMovePropertyName = "Is Moving";
 
     Animator _anim;
-    MoveToTarget _movement;
+    IMovement _movement;
 
     Vector3 _lastDir;
     float _nextRefreshTime;
@@ -17,7 +17,7 @@ public class SetAnimMovementProperties : MonoBehaviour
     void OnEnable()
     {
         _anim = GetComponent<Animator>();
-        _movement = GetComponentInParent<MoveToTarget>();
+        _movement = GetComponentInParent<IMovement>();
     }
 
     void Start() => Refresh(true);
@@ -35,10 +35,10 @@ public class SetAnimMovementProperties : MonoBehaviour
         if (_movement == null)
             return;
 
-        _anim.SetBool(didJustMovePropertyName, _movement.didJustMove);
+        _anim.SetBool(didJustMovePropertyName, _movement.DidJustMove);
 
-        var newDir = _movement.lastDir;
-        if (_lastDir == newDir)
+        var newDir = _movement.LastMovementDir;
+        if (!force && _lastDir == newDir)
             return;
         _lastDir = newDir;
 
