@@ -21,6 +21,7 @@ public class Stone : MonoBehaviour
     EnemyPathToTarget _movement;
     PathingBlocker _blocker;
 
+    Crystal _targetCrystal;
     float _nextTargetTime;
 
     void OnEnable()
@@ -72,7 +73,12 @@ public class Stone : MonoBehaviour
     void HandleTick()
     {
         if (isAwakened)
+        {
             MaybeRefreshMovementTarget();
+
+            if (HasReachedCrystal())
+                _targetCrystal.Break();
+        }
     }
 
     void MaybeRefreshMovementTarget()
@@ -85,9 +91,13 @@ public class Stone : MonoBehaviour
     {
         _nextTargetTime = Refs.I.gc.time + TARGET_REFRESH_INTERVAL;
 
-        _movement.SetTarget(Refs.NearestCrystal(transform.position));
+        _movement.Target = _targetCrystal = Refs.NearestCrystal(transform.position);
     }
 
+    bool HasReachedCrystal() =>
+        _targetCrystal != null &&
+        _targetCrystal.IsInRadiusOf(_thisEnemy) == true;
+    
     [Serializable]
     public enum Type
     {

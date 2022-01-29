@@ -79,6 +79,10 @@ MonoBehaviour:
     m_Key: Gameplay HUD - Victory - Title
     m_Metadata:
       m_Items: []
+  - m_Id: 1163167398662144
+    m_Key: Gameplay HUD - Game Over - Reason - Crystal Broken
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

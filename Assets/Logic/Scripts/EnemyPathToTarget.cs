@@ -16,6 +16,15 @@ public class EnemyPathToTarget : MonoBehaviour, IMovement
 
     public Vector3 LastMovementDir => _lastDir;
     public bool DidJustMove => _didJustMove;
+    public IPathingTarget Target
+    {
+        get => _target;
+        set
+        {
+            _target = value;
+            _nextPos = transform.position; // This'll trigger a `SetNextPos` on the next tick
+        }
+    }
 
     void OnEnable()
     {
@@ -28,14 +37,8 @@ public class EnemyPathToTarget : MonoBehaviour, IMovement
         GameController.onGameOver -= HandleGameOver;
     }
 
-    public void SetTarget(IPathingTarget target)
-    {
-        _target = target;
-        _nextPos = transform.position; // This'll trigger a `SetNextPos` on the next tick
-    }
-
     void HandleTick() => Move();
-    void HandleGameOver(bool _) => _didJustMove = false;
+    void HandleGameOver(GameOverReason _) => _didJustMove = false;
 
     void SetNextPos()
     {

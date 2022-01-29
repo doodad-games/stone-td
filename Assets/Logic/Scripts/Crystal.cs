@@ -9,6 +9,10 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius, IPathingTarget
 
     const float CARRIER_FOLLOWER_DISTANCE_REFRESH_INTERVAL = 3f;
 
+    public static event Action onAnyBroken;
+
+    public event Action onBroken;
+
 #pragma warning disable CS0649
     [SerializeField] GameObject _collision;
     [SerializeField] float _collisionRadius;
@@ -49,6 +53,13 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius, IPathingTarget
         transform.position = carriedBy.transform.position;
         carriedBy = null;
         ResetFollowerDistances();
+    }
+
+    public void Break()
+    {
+        Destroy(this);
+        onBroken?.Invoke();
+        onAnyBroken?.Invoke();
     }
 
     void HandleTick() => MaybeRefreshCarrierFollowerDistances();

@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public static event Action onTick;
     public static event Action onPlayPauseToggled;
     public static event Action onStonesAwakened;
-    public static event Action<bool> onGameOver;
+    public static event Action<GameOverReason> onGameOver;
 
     public bool IsPlaying => Time.timeScale != 0;
 
@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
         Refs.I.gc = this;
 
         Invader.onBroughtCrystalToCastle += HandleBroughtCrystalToCastle;
+        Crystal.onAnyBroken += HandleCrystalBroken;
         Enemy.onAnyDied += HandleEnemyDied;
     }
     void OnDisable()
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour
             Refs.I.gc = null;
 
         Invader.onBroughtCrystalToCastle -= HandleBroughtCrystalToCastle;
+        Crystal.onAnyBroken -= HandleCrystalBroken;
         Enemy.onAnyDied -= HandleEnemyDied;
     }
 
@@ -123,7 +125,13 @@ public class GameController : MonoBehaviour
     void HandleBroughtCrystalToCastle()
     {
         isGameOver = true;
-        onGameOver?.Invoke(false);
+        onGameOver?.Invoke(GameOverReason.InvadersStoleCrystal);
+    }
+
+    void HandleCrystalBroken()
+    {
+        isGameOver = true;
+        onGameOver?.Invoke(GameOverReason.StonesBrokeCrystal);
     }
 
     void HandleEnemyDied()
@@ -136,7 +144,7 @@ public class GameController : MonoBehaviour
             if (haveStonesAwakened)
             {
                 isGameOver = true;
-                onGameOver?.Invoke(true);
+                onGameOver?.Invoke(GameOverReason.Victory);
             }
             else AwakenStones();
         }
@@ -151,4 +159,11 @@ public class GameController : MonoBehaviour
         
         onStonesAwakened?.Invoke();
     }
+}
+
+public enum GameOverReason
+{
+    Victory,
+    InvadersStoleCrystal,
+    StonesBrokeCrystal
 }

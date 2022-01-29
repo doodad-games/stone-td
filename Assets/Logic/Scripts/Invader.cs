@@ -85,7 +85,7 @@ public class Invader : MonoBehaviour
     void FindNearestCastle()
     {
         _targetCastle = Refs.NearestCastle(transform.position);
-        _movement.SetTarget(_targetCastle);
+        _movement.Target = _targetCastle;
         _movement.followDistance = 0f;
     }
     
@@ -95,7 +95,7 @@ public class Invader : MonoBehaviour
         if (targetCrystal == newTargetCrystal)
             return;
 
-        _movement.SetTarget(newTargetCrystal);
+        _movement.Target = newTargetCrystal;
         _movement.followDistance = 0f;
         
         targetCrystal = newTargetCrystal;
