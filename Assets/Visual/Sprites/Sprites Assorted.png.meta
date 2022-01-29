@@ -397,7 +397,7 @@ TextureImporter:
         width: 10
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -418,7 +418,7 @@ TextureImporter:
         width: 10
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -426,6 +426,27 @@ TextureImporter:
       bones: []
       spriteID: 197dbac0fdee80c44b69c7ce1df7aa7b
       internalID: 1088923655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall Outline
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 23
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e5f2c5b8001b5b459b87d3c6a1c1160
+      internalID: -1043922046
       vertices: []
       indices: 
       edges: []
@@ -453,6 +474,7 @@ TextureImporter:
       Stone Wall 2 Static: 687706700
       Stone Wall 2 Outline: -1468790269
       Tree 1: 1427560564
+      Wall Outline: -1043922046
       Stone Wall 1 Static: 604388417
       Tree 4: -2069577021
       Tree Dead 1: -663851033
