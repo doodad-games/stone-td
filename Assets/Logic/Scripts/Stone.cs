@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Stone : MonoBehaviour
 {
-    public static event Action<Stone> onTappedJustChanged;
+    public static event Action<Stone> onAnyTappedChanged;
     public static event Action<Stone.Type> onFailedToUntap;
 
     public event Action onTappedChanged;
@@ -29,7 +29,7 @@ public class Stone : MonoBehaviour
         else Refs.I.tappedStones[type].Remove(this);
 
         onTappedChanged?.Invoke();
-        onTappedJustChanged?.Invoke(this);
+        onAnyTappedChanged?.Invoke(this);
     }
 
     [Serializable]

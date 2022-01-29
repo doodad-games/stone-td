@@ -21,16 +21,16 @@ public class UIController : MonoBehaviour
     void OnEnable()
     {
         Refs.I.uic = this;
-        Stone.onTappedJustChanged += HandleStoneTappedJustChanged;
+        Stone.onAnyTappedChanged += HandleAnyStoneTappedChanged;
     }
     void OnDisable()
     {
         if (Refs.I != null)
             Refs.I.uic = this;
-        Stone.onTappedJustChanged -= HandleStoneTappedJustChanged;
+        Stone.onAnyTappedChanged -= HandleAnyStoneTappedChanged;
     }
 
-    void HandleStoneTappedJustChanged(Stone stone)
+    void HandleAnyStoneTappedChanged(Stone stone)
     {
         if (stone.tapped)
             StonePlacementMode = stone.type;

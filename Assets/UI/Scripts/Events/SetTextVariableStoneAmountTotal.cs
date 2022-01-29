@@ -19,12 +19,12 @@ public class SetTextVariableStoneAmountTotal : MonoBehaviour
         }
 
         _locString = GetComponent<LocalizeStringEvent>();
-        Stone.onTappedJustChanged += HandleStoneTappedJustChanged;
+        Stone.onAnyTappedChanged += HandleAnyStoneTappedChanged;
         Refresh();
     }
-    void OnDisable() => Stone.onTappedJustChanged -= HandleStoneTappedJustChanged;
+    void OnDisable() => Stone.onAnyTappedChanged -= HandleAnyStoneTappedChanged;
 
-    void HandleStoneTappedJustChanged(Stone _) => Refresh();
+    void HandleAnyStoneTappedChanged(Stone _) => Refresh();
 
     void Refresh()
     {

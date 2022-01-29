@@ -199,6 +199,342 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 F1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65d2f426ea4e88a4284c06034f876966
+      internalID: 2081605374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 F2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30acd6721f642fc4fab4ada22bb52d49
+      internalID: -776949745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 F3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090296c30d567e840baba29cd0f4b518
+      internalID: -778450051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 F4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acc7c7ed0accc364fae8b229290e0e58
+      internalID: 2101519299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 Static F1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fff17d205419b2428ac71e6c102742c
+      internalID: 1667720422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 Static F2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078d8040aefce00469d2ef7b50b782d7
+      internalID: -442712783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 Static F3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1ef6e53d3120f4385ce70680bbdfaf
+      internalID: -102254362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 2 Static F4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ea1019a95405a94289ad9618eab23fa
+      internalID: -344804759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 F1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41cfc015dde92a84ba0f4374f497f6f9
+      internalID: -1391903463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 F2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da94a9f30d8ab6f428cf4df773f647c1
+      internalID: -1239894612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 F3
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace8c91b14acec94c8ed1728dbc211c7
+      internalID: -1264849646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 F4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 48
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15bdf279b33b56042b645ee3e0c21085
+      internalID: 1158161186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 Static F4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 32
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a3e8f06a02dda44e8ea9c939f3b5f1d
+      internalID: 1420881221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 Static F3
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 32
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f99aa7943de65a4e8e7ccc3b9bb9931
+      internalID: -377137507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 Static F2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 32
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cc1c6b0ee57ff34e9bc5653e4b6125b
+      internalID: -385645757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Wall 1 Static F1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 32
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ddcb86a5d50564b833e70245cb3410
+      internalID: -908473172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -210,8 +546,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Stone Wall 2 Static F1: 1667720422
       Soldier F3: -1567717006
+      Stone Wall 1 Static F4: 1420881221
+      Stone Wall 1 F1: -1391903463
+      Stone Wall 2 F2: -776949745
       Soldier F2: -706661016
+      Stone Wall 1 Static F3: -377137507
+      Stone Wall 2 Static F2: -442712783
+      Stone Wall 2 F4: 2101519299
+      Stone Wall 1 Static F2: -385645757
+      Stone Wall 1 Static F1: -908473172
+      Stone Wall 1 F3: -1264849646
+      Stone Wall 2 F1: 2081605374
+      Stone Wall 2 Static F4: -344804759
+      Stone Wall 2 F3: -778450051
+      Stone Wall 1 F2: -1239894612
+      Stone Wall 2 Static F3: -102254362
+      Stone Wall 1 F4: 1158161186
       Solider F1: -1738835796
       Soldier F4: -432115713
   spritePackingTag: 
