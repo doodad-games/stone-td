@@ -20,7 +20,6 @@ public class OnMovementDirectionChanged : MonoBehaviour
         if (_movement == null)
             return;
 
-
         var rotation = Vector2.Angle(Vector2.right, _movement.LastMovementDir);
         if (rotation <= 90f || rotation > 270f)
             onGoingRight?.Invoke();

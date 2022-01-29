@@ -7,7 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Spike
-  m_Controller: {fileID: 9100000, guid: 9305780687d616b489e9aa8b5c56c9a2, type: 2}
+  m_Controller: {fileID: 9100000, guid: b8a42c9567b860e41b63d064ef923edb, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 6dd39dec634befe42beecef1a53e361f, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 2ffb9c6ed3306784fbc32fb26ed1ed84, type: 2}

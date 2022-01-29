@@ -880,7 +880,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -901,7 +901,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -922,7 +922,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -943,7 +943,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -951,6 +951,90 @@ TextureImporter:
       bones: []
       spriteID: 2fe4fa47d1b75ef499755b3e52b8f1da
       internalID: -1511846673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike Attack F1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 32
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2b0b69622d959946a3e77f8fdb83b43
+      internalID: -2050619215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike Attack F2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 32
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aae972752034c4e4388a233b8a702130
+      internalID: 1528794479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike Attack F3
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 32
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e004168c3ad9b41b694f2b84580937
+      internalID: 1739322120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike Attack F4
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 32
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fa38b9ab136f5f489895ce8396f7eae
+      internalID: 530231911
       vertices: []
       indices: 
       edges: []
@@ -967,44 +1051,48 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Spike F4: -1511846673
-      Stone Wall 2 Static F1: 1667720422
-      Spike F2: -969169681
       Stone Spike 1 F4: 597273874
       Soldier F3: -1567717006
       Stone Spike 1 F3: -670538441
       Stone Spike 2 F3: -1427204889
-      Stone Wall 1 Static F4: 1420881221
       Stone Wall 1 F1: -1391903463
-      Stone Wall 2 F2: -776949745
-      Soldier F2: -706661016
       Stone Spike 1 Static F2: 1410616841
+      Soldier F2: -706661016
       Stone Spike 1 Static F3: -1971317022
+      Stone Spike 2 Static F3: 1752552581
+      Stone Wall 2 Static F2: -442712783
+      Stone Wall 2 F4: 2101519299
+      Spike Attack F4: 530231911
+      Stone Wall 1 F3: -1264849646
+      Stone Wall 2 Static F4: -344804759
+      Stone Wall 2 F3: -778450051
+      Stone Wall 1 F2: -1239894612
+      Stone Wall 2 Static F3: -102254362
+      Stone Spike 2 F2: 2041563229
+      Spike F3: -1605252921
+      Soldier F4: -432115713
+      Stone Wall 2 Static F1: 1667720422
+      Spike F2: -969169681
+      Spike Attack F1: -2050619215
+      Stone Wall 1 Static F4: 1420881221
+      Stone Wall 2 F2: -776949745
+      Spike Attack F2: 1528794479
       Stone Wall 1 Static F3: -377137507
       Stone Spike 1 F2: 1873769910
       Stone Spike 2 F4: -912714655
-      Stone Wall 2 Static F2: -442712783
-      Stone Wall 2 F4: 2101519299
       Spike F1: 1227907037
+      Stone Spike 2 Static F4: -1218551150
       Stone Wall 1 Static F2: -385645757
       Stone Wall 1 Static F1: -908473172
       Stone Spike 1 Static F1: -966936695
       Stone Spike 2 Static F2: -734847411
       Stone Spike 1 F1: -225203743
-      Stone Wall 1 F3: -1264849646
-      Stone Wall 2 F1: 2081605374
-      Stone Wall 2 Static F4: -344804759
       Stone Spike 2 F1: 43932252
-      Stone Wall 2 F3: -778450051
-      Stone Wall 1 F2: -1239894612
-      Stone Spike 2 Static F3: 1752552581
-      Stone Wall 2 Static F3: -102254362
+      Stone Wall 2 F1: 2081605374
+      Spike Attack F3: 1739322120
       Stone Wall 1 F4: 1158161186
-      Stone Spike 2 F2: 2041563229
       Solider F1: -1738835796
       Stone Spike 2 Static F1: -1584581802
-      Stone Spike 2 Static F4: -1218551150
-      Spike F3: -1605252921
-      Soldier F4: -432115713
       Stone Spike 1 Static F4: 1714229718
   spritePackingTag: 
   pSDRemoveMatte: 0
