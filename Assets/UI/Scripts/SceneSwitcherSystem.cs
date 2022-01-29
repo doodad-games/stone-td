@@ -1,8 +1,12 @@
+using System;
+using MyLibrary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneSwitcherSystem : MonoBehaviour
 {
+    public static event Action onSwitchedScene;
+
     public static SceneSwitcherSystem I { get; private set; }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -32,5 +36,7 @@ public class SceneSwitcherSystem : MonoBehaviour
     {
         _anim.SetBool("Switching Scene", false);
         SceneManager.LoadScene(_sceneToLoad);
+        
+        new Async(this).Next(2).Then(onSwitchedScene.Invoke);
     }
 }
