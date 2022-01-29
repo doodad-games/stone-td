@@ -79,6 +79,9 @@ public class Stone : MonoBehaviour
         _blocker.enabled = false;
         _hpBar.SetActive(true);
         isAwakened = true;
+
+        onTappedChanged?.Invoke();
+
         SetNextMergeTime();
     }
 

@@ -1,17 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
+using MyLibrary;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.Audio;
 
 public class StoneTDPlaylist : MonoBehaviour
 {
+    public StoneTDPlaylist playlistToFollow;
+
     AudioSource[] _tracks;
-    int _trackIndex = -1;
+    int[] _shuffleOrder;
+    int _trackIndex;
+    int _shuffleIndex = -1;
     AudioSource _cur;
 
-    void OnEnable() =>
+    void OnEnable()
+    {
         _tracks = GetComponentsInChildren<AudioSource>();
+        _shuffleOrder = Enumerable.Range(0, _tracks.Length).Shuffle_().ToArray();
+    }
 
     void Update()
     {
@@ -21,8 +26,14 @@ public class StoneTDPlaylist : MonoBehaviour
         var shouldPlayNext = _cur == null || !_cur.isPlaying;
         if (!shouldPlayNext)
             return;
+        _cur?.Stop();
 
-        _trackIndex = (_trackIndex + 1) % _tracks.Length;
+        if (playlistToFollow == null)
+        {
+            _shuffleIndex = (_shuffleIndex + 1) % _tracks.Length;
+            _trackIndex = _shuffleOrder[_shuffleIndex];
+        }
+        else _trackIndex = playlistToFollow._trackIndex;
 
         _cur = _tracks[_trackIndex];
         if (_cur.isActiveAndEnabled)

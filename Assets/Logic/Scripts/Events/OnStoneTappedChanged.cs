@@ -22,7 +22,7 @@ public class OnStoneTappedChanged : MonoBehaviour
 
     void Refresh()
     {
-        if (_stone.tapped)
+        if (_stone.tapped && !_stone.isAwakened)
             onTapped?.Invoke();
         else onUntapped?.Invoke();
     }
