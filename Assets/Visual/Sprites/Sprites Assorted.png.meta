@@ -350,7 +350,7 @@ TextureImporter:
       name: Stone Wall 1 Outline
       rect:
         serializedVersion: 2
-        x: 29
+        x: 28
         y: 33
         width: 10
         height: 18
@@ -371,7 +371,7 @@ TextureImporter:
       name: Stone Wall 2 Outline
       rect:
         serializedVersion: 2
-        x: 18
+        x: 17
         y: 33
         width: 10
         height: 18
@@ -384,6 +384,48 @@ TextureImporter:
       bones: []
       spriteID: 8967d2aa93c376e499cb86ec78cc269f
       internalID: -1468790269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 Outline
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 33
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca0260f2d527cd41abb2b7f3ddecf0f
+      internalID: 1922395907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 Outline
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 33
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 197dbac0fdee80c44b69c7ce1df7aa7b
+      internalID: 1088923655
       vertices: []
       indices: 
       edges: []
@@ -407,6 +449,7 @@ TextureImporter:
       Collider 3: 1078936002
       Tree 2: -970295059
       Tree Dead 4: 1756975059
+      Stone Spike 2 Outline: 1088923655
       Stone Wall 2 Static: 687706700
       Stone Wall 2 Outline: -1468790269
       Tree 1: 1427560564
@@ -415,6 +458,7 @@ TextureImporter:
       Tree Dead 1: -663851033
       Tree 3: 1230642128
       Stone Wall 2: 256816506
+      Stone Spike 1 Outline: 1922395907
       Stone Wall 1: 229547714
   spritePackingTag: 
   pSDRemoveMatte: 0

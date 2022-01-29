@@ -83,8 +83,7 @@ public class GameController : MonoBehaviour
         SceneSwitcherSystem.I.ReloadCurrentScene();
     
     public bool CanConstructMore(Stone.Type type) =>
-        Refs.I.usedTappedStones[Refs.I.uic.StonePlacementMode] <
-        Refs.I.tappedStones[Refs.I.uic.StonePlacementMode].Count;
+        Refs.I.usedTappedStones[type] < Refs.I.tappedStones[type].Count;
     
     public void ConstructThing(Stone.Type type, Vector2Int coord)
     {

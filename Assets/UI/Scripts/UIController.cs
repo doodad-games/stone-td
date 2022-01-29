@@ -35,7 +35,7 @@ public class UIController : MonoBehaviour
         if (stone.tapped)
             StonePlacementMode = stone.type;
         else if (
-            StonePlacementMode != stone.type ||
+            StonePlacementMode == stone.type &&
             Refs.I.tappedStones[stone.type].Count == 0
         ) StonePlacementMode = Stone.Type.None;
     }

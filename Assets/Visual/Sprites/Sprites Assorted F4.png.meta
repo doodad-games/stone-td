@@ -535,6 +535,342 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 F1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ddc1eb3dba2a04083e99f3cd47ee2a
+      internalID: -225203743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 F2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbe605bc38eec464c9c9267d622393d1
+      internalID: 1873769910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 F3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702a4bf6fbed8ab44a3ca6757c3869a7
+      internalID: -670538441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 F4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c369456b9d4e4c4ab7d045106890df2
+      internalID: 597273874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 F1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94fcad89b2d96204db718e7a32581fa8
+      internalID: 43932252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 F2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a14a6804ee360345891e419c25267b8
+      internalID: 2041563229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 F3
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67ed1451de5cb9b478646c6c7dcf7e69
+      internalID: -1427204889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 F4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f581dfec57131149a905949f8a9b9f7
+      internalID: -912714655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 Static F1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04a3ff8da5dd73b4fb673f9800a20ced
+      internalID: -966936695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 Static F2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b418325b232834e86571cc1e2b45c8
+      internalID: 1410616841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 Static F3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d36e8488a80c24782565da5f70247f
+      internalID: -1971317022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 1 Static F4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24eab5958fcca4f4ca39f0148415cf81
+      internalID: 1714229718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 Static F1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afe8172b7d1a9d04fbd006e10d081c4f
+      internalID: -1584581802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 Static F2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e6db6c45d47db940b9185a0d302753d
+      internalID: -734847411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 Static F3
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 650e5ad12871b4141b03ba6ecf28de03
+      internalID: 1752552581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Spike 2 Static F4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d8cf8e2f269e04a852c1c9aafb0170
+      internalID: -1218551150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -547,25 +883,41 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Stone Wall 2 Static F1: 1667720422
+      Stone Spike 1 F4: 597273874
       Soldier F3: -1567717006
+      Stone Spike 1 F3: -670538441
+      Stone Spike 2 F3: -1427204889
       Stone Wall 1 Static F4: 1420881221
       Stone Wall 1 F1: -1391903463
       Stone Wall 2 F2: -776949745
       Soldier F2: -706661016
+      Stone Spike 1 Static F2: 1410616841
+      Stone Spike 1 Static F3: -1971317022
       Stone Wall 1 Static F3: -377137507
+      Stone Spike 1 F2: 1873769910
+      Stone Spike 2 F4: -912714655
       Stone Wall 2 Static F2: -442712783
       Stone Wall 2 F4: 2101519299
       Stone Wall 1 Static F2: -385645757
       Stone Wall 1 Static F1: -908473172
+      Stone Spike 1 Static F1: -966936695
+      Stone Spike 2 Static F2: -734847411
+      Stone Spike 1 F1: -225203743
       Stone Wall 1 F3: -1264849646
       Stone Wall 2 F1: 2081605374
       Stone Wall 2 Static F4: -344804759
+      Stone Spike 2 F1: 43932252
       Stone Wall 2 F3: -778450051
       Stone Wall 1 F2: -1239894612
+      Stone Spike 2 Static F3: 1752552581
       Stone Wall 2 Static F3: -102254362
       Stone Wall 1 F4: 1158161186
+      Stone Spike 2 F2: 2041563229
       Solider F1: -1738835796
+      Stone Spike 2 Static F1: -1584581802
+      Stone Spike 2 Static F4: -1218551150
       Soldier F4: -432115713
+      Stone Spike 1 Static F4: 1714229718
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

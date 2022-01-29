@@ -36,6 +36,7 @@ public class Stone : MonoBehaviour
     public enum Type
     {
         None = 0,
-        Wall = 1
+        Wall = 1,
+        Spike = 2
     }
 }
