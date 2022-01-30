@@ -2,14 +2,26 @@ using UnityEngine;
 
 public class MouseInputController : MonoBehaviour
 {
+    public Vector2Int hoveredCoord;
+
     MouseSupport _lastHovered;
     MouseMode _activeMouseMode;
     string _activeDragSelectType;
     bool _isConstructingThings;
 
-    void OnEnable() => Stone.onFailedToUntap += HandleFailedToUntapStone;
+    void OnEnable()
+    {
+        Stone.onFailedToUntap += HandleFailedToUntapStone;
+        Refs.I.mouseC = this;
+    }
     void Update() => CheckConstructionInput();
-    void OnDisable() => Stone.onFailedToUntap -= HandleFailedToUntapStone;
+    void OnDisable()
+    {
+        if (Refs.I != null)
+            Refs.I.mouseC = null;
+
+        Stone.onFailedToUntap -= HandleFailedToUntapStone;
+    }
 
     void HandleFailedToUntapStone(Stone.Type type) => _activeDragSelectType = null;
 
@@ -27,6 +39,7 @@ public class MouseInputController : MonoBehaviour
         }
 
         var mousePos = Refs.I.cam.ScreenToWorldPoint(Input.mousePosition);
+        hoveredCoord = GetMouseCoord(mousePos);
         var raycast = Physics2D.Raycast(mousePos, Vector2.zero);
 
         var mouseSupportComp = raycast.collider?.GetComponentInParent<MouseSupport>();
@@ -55,11 +68,10 @@ public class MouseInputController : MonoBehaviour
                 {
                     if (Refs.I.gc.CanConstructMore(Refs.I.uic.StonePlacementMode))
                     {
-                        var coord = GetMouseCoord(mousePos);
-                        if (Refs.I.ps.IsPathable(coord))
+                        if (Refs.I.ps.IsPathable(hoveredCoord))
                         {
                             _isConstructingThings = true;
-                            Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                            Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, hoveredCoord);
                         }
                     }
                 }
@@ -98,11 +110,10 @@ public class MouseInputController : MonoBehaviour
                 {
                     if (Refs.I.gc.CanConstructMore(Refs.I.uic.StonePlacementMode))
                     {
-                        var coord = GetMouseCoord(mousePos);
-                        if (Refs.I.ps.IsPathable(coord))
+                        if (Refs.I.ps.IsPathable(hoveredCoord))
                         {
                             _isConstructingThings = true;
-                            Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, coord);
+                            Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, hoveredCoord);
                         }
                     }
                 }
