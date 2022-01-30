@@ -33,7 +33,8 @@ public class FireProjectilesAtEnemies : MonoBehaviour, IHasCollisionRadius
     void EnsureTargetIsValid()
     {
         if (
-            (MonoBehaviour)_target == null ||
+            _target == null ||
+            _target.isDead ||
             !this.IsInRadiusOf(_target)
         ) _target = null;
     }

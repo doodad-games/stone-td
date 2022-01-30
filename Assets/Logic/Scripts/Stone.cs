@@ -87,6 +87,9 @@ public class Stone : MonoBehaviour
 
     void HandleTick()
     {
+        if (_thisEnemy.isDead)
+            return;
+
         if (isAwakened)
         {
             MaybeFindNearestCrystal();

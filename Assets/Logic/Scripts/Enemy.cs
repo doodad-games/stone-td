@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
     [SerializeField] float _collisionRadius;
 #pragma warning restore CS0649
 
+    [HideInInspector] public bool isDead;
+
     int _life;
     public int Life
     {
@@ -21,12 +23,17 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
         set
         {
             if (value <= 0)
-            {
-                Die();
+                value = 0;
+            
+            if (_life == value)
                 return;
-            }
-
+            
             _life = value;
+
+            if (value == 0 && !isDead)
+                if (!isDead)
+                    Die();
+
             onLifeChanged?.Invoke();
         }
     }
@@ -38,17 +45,21 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
     }
 
     void Awake() => _life = startingLife;
-    void OnEnable() => Refs.I.Enemies.Add(this);
-
+    void OnEnable()
+    {
+        if (!isDead)
+            Refs.I.Enemies.Add(this);
+    }
     void OnDisable()
     {
-        if (Refs.I != null)
+        if (!isDead && Refs.I != null)
             Refs.I.Enemies.Remove(this);
     }
 
     void Die()
     {
-        Destroy(gameObject);
+        Refs.I.Enemies.Remove(this);
+        isDead = true;
         onDie?.Invoke();
         onAnyDied?.Invoke();
     }

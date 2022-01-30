@@ -73,6 +73,7 @@ public class MouseInputController : MonoBehaviour
                     _activeDragSelectType = mouseSupportComp.dragSelectType;
                     mouseSupportComp.BroadcastMessage("Msg_OnRightClick");
                 }
+                else Refs.I.uic.StonePlacementMode = Stone.Type.None;
             }
         }
         else if (_activeMouseMode == MouseMode.LeftClick)

@@ -56,6 +56,9 @@ public class Invader : MonoBehaviour
 
     void HandleTick()
     {
+        if (_thisEnemy.isDead)
+            return;
+
         MaybeRefreshMovementTarget();
 
         if (isHoldingCrystal)

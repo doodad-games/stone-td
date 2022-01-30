@@ -8,6 +8,7 @@ public class EnemyPathToTarget : MonoBehaviour, IMovement
     [SerializeField] float _speed;
 #pragma warning restore CS0649
 
+    Enemy _thisEnemy;
     IPathingTarget _target;
     Vector2Int _nextCoord;
     Vector3 _nextPos;
@@ -28,6 +29,7 @@ public class EnemyPathToTarget : MonoBehaviour, IMovement
 
     void OnEnable()
     {
+        _thisEnemy = GetComponent<Enemy>();
         GameController.onTick += HandleTick;
         GameController.onGameOver += HandleGameOver;
     }
@@ -48,7 +50,7 @@ public class EnemyPathToTarget : MonoBehaviour, IMovement
     
     void Move()
     {
-        if (_target == null)
+        if (_thisEnemy.isDead || _target == null)
             return;
 
         _didJustMove = false;
