@@ -12,15 +12,10 @@ public class SetAnimIsDead : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _enemy = GetComponentInParent<Enemy>();
-
-        _enemy.onDie += Refresh;
         Refresh();
     }
-    void OnDisable()
-    {
-        if (_enemy != null)
-            _enemy.onDie -= Refresh;
-    }
+
+    void Msg_OnDied() => Refresh();
 
     void Refresh() => _anim.SetBool(propertyName, _enemy.isDead);
 

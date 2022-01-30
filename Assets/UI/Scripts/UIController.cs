@@ -32,7 +32,7 @@ public class UIController : MonoBehaviour
 
     void HandleAnyStoneTappedChanged(Stone stone)
     {
-        if (stone.tapped)
+        if (stone.isTapped)
             StonePlacementMode = stone.type;
         else if (
             StonePlacementMode == stone.type &&

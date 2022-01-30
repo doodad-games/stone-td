@@ -32,8 +32,9 @@ public class Invader : MonoBehaviour
         FindMovementTarget();
 
         GameController.onTick += HandleTick;
-        _thisEnemy.onDie += MaybeDropCrystal;
     }
+
+    void Msg_OnDied() => MaybeDropCrystal();
 
     void OnDisable()
     {
@@ -44,9 +45,6 @@ public class Invader : MonoBehaviour
         }
 
         GameController.onTick -= HandleTick;
-
-        if (_thisEnemy != null)
-            _thisEnemy.onDie -= MaybeDropCrystal;
     }
 
     public void SetCrystalFollowDistance(int followerI) =>

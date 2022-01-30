@@ -119,6 +119,10 @@ MonoBehaviour:
     m_Localized: Tap on the mysterious Stones for resources to build Walls and Towers.
     m_Metadata:
       m_Items: []
+  - m_Id: 1438697301774336
+    m_Localized: Next Level
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

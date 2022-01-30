@@ -26,6 +26,20 @@ public class SceneSwitcherSystem : MonoBehaviour
 
     public void ReloadCurrentScene() =>
         Load(SceneManager.GetActiveScene().name);
+
+    public void LoadNextLevel()
+    {
+        var thisSceneName = SceneManager.GetActiveScene().name;
+        var thisLevelIndex = StoneTDConfig.I.GetThisLevelIndex();
+        if (thisLevelIndex == StoneTDConfig.I.orderedLevelSceneNames.Length - 1)
+        {
+            Debug.LogError("Tried to load next level while on the last configured level 🤔 Do you need to update StoneTDConfig?");
+            return;
+        }
+
+        Load(StoneTDConfig.I.orderedLevelSceneNames[thisLevelIndex + 1]);
+    }
+
     public void Load(string sceneName)
     {
         _sceneToLoad = sceneName;

@@ -11,7 +11,7 @@ public class KeyboardInputController : MonoBehaviour
     void CheckForGameplayInput()
     {
         if (Input.GetKeyDown(KeyCode.R))
-            Refs.I.gc.Retry();
+            SceneSwitcherSystem.I.ReloadCurrentScene();
         
         if (Refs.I.gc.isGameOver)
             return;

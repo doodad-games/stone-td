@@ -48,7 +48,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 77919970541568
-    m_Key: Gameplay HUD - Game Over - Retry Button
+    m_Key: Gameplay HUD - Retry Button
     m_Metadata:
       m_Items: []
   - m_Id: 109693082271744
@@ -93,6 +93,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1352583857606656
     m_Key: Gameplay HUD - Tap Anything Instruction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1438697301774336
+    m_Key: Gameplay HUD - Victory - Next Level Button
     m_Metadata:
       m_Items: []
   m_Metadata:

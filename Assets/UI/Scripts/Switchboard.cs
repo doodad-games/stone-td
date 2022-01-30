@@ -12,7 +12,10 @@ public class Switchboard : MonoBehaviour
         Refs.I.gc.SkipAhead((int)(numSeconds / Time.fixedDeltaTime));
     
     public void Insp_Retry() =>
-        Refs.I.gc.Retry();
+        SceneSwitcherSystem.I.ReloadCurrentScene();
+    
+    public void Insp_NextLevel() =>
+        SceneSwitcherSystem.I.LoadNextLevel();
     
     public void Insp_SetStonePlacementModeIfUnset(StoneTypeParams type)
     {

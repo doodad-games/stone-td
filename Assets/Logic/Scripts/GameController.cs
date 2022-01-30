@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
 
     static Dictionary<Stone.Type, int> _tapValueOverrides = new Dictionary<Stone.Type, int>
     {
-        { Stone.Type.Wall, 3 }
+        { Stone.Type.Wall, 4 }
     };
 
     public bool IsPlaying => Time.timeScale != 0;
@@ -92,9 +92,6 @@ public class GameController : MonoBehaviour
             DoTick();
     }
 
-    public void Retry() =>
-        SceneSwitcherSystem.I.ReloadCurrentScene();
-    
     public bool CanConstructMore(Stone.Type type) =>
         Refs.I.usedTappedStones[type] < GetAmountTapped(type);
     

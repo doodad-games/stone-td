@@ -4,7 +4,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IHasCollisionRadius
 {
     public static event Action onAnyDied;
-    public event Action onDie;
     public event Action onLifeChanged;
 
     public ProjectileTargetParams projectileTargetParams;
@@ -60,7 +59,7 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
     {
         Refs.I.Enemies.Remove(this);
         isDead = true;
-        onDie?.Invoke();
+        BroadcastMessage("Msg_OnDied");
         onAnyDied?.Invoke();
     }
 }
