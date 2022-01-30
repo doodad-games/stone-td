@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseInputController : MonoBehaviour
 {
@@ -58,6 +59,9 @@ public class MouseInputController : MonoBehaviour
 
         if (_activeMouseMode == MouseMode.None)
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             if (Input.GetMouseButtonDown(0))
             {
                 _activeMouseMode = MouseMode.LeftClick;
