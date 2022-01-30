@@ -13,6 +13,8 @@ public class PlacementHoverIndicator : MonoBehaviour
     {
         if (
             Refs.I.gc.isDefencePhase ||
+            Refs.I.mouseC.IsMousingOverSomething ||
+            Refs.I.mouseC.IsDraggingSomething ||
             Refs.I.uic.StonePlacementMode == Stone.Type.None ||
             !Refs.I.ps.IsPathable(Refs.I.mouseC.hoveredCoord)
         )

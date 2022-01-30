@@ -9,6 +9,9 @@ public class MouseInputController : MonoBehaviour
     string _activeDragSelectType;
     bool _isConstructingThings;
 
+    public bool IsDraggingSomething => _activeMouseMode != MouseMode.None;
+    public bool IsMousingOverSomething => _lastHovered != null;
+
     void OnEnable()
     {
         Stone.onFailedToUntap += HandleFailedToUntapStone;

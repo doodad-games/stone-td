@@ -9,5 +9,7 @@ AnimatorOverrideController:
   m_Name: Spike
   m_Controller: {fileID: 9100000, guid: b8a42c9567b860e41b63d064ef923edb, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 6dd39dec634befe42beecef1a53e361f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 291cf48d72b2e8e4d966df4db7bab69d, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 2ffb9c6ed3306784fbc32fb26ed1ed84, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 443ee5dad824d4b4f95e646f9494e1d9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 443ee5dad824d4b4f95e646f9494e1d9, type: 2}
