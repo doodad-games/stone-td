@@ -10,6 +10,7 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius, IPathingTarget
     const float CARRIER_FOLLOWER_DISTANCE_REFRESH_INTERVAL = 3f;
 
     public static event Action onAnyBroken;
+    public static event Action<Crystal> onAnyGrabbed;
 
     public event Action onBroken;
 
@@ -44,6 +45,7 @@ public class Crystal : MonoBehaviour, IHasCollisionRadius, IPathingTarget
         transform.localPosition = Vector3.zero;
         carriedBy = invader;
         RefreshCarrierFollowerDistances();
+        onAnyGrabbed?.Invoke(this);
     }
 
     public void Drop()

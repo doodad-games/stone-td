@@ -69,14 +69,15 @@ public class MouseInputController : MonoBehaviour
                 }
                 else if (Refs.I.uic.StonePlacementMode != Stone.Type.None)
                 {
-                    if (Refs.I.gc.CanConstructMore(Refs.I.uic.StonePlacementMode))
+                    if (
+                        Refs.I.gc.CanConstructMore(Refs.I.uic.StonePlacementMode) &&
+                        Refs.I.ps.IsPathable(hoveredCoord)
+                    )
                     {
-                        if (Refs.I.ps.IsPathable(hoveredCoord))
-                        {
-                            _isConstructingThings = true;
-                            Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, hoveredCoord);
-                        }
+                        _isConstructingThings = true;
+                        Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, hoveredCoord);
                     }
+                    else UIController.onError?.Invoke();
                 }
             }
             else if (Input.GetMouseButtonDown(1))
@@ -111,14 +112,10 @@ public class MouseInputController : MonoBehaviour
                 }
                 else if (_isConstructingThings)
                 {
-                    if (Refs.I.gc.CanConstructMore(Refs.I.uic.StonePlacementMode))
-                    {
-                        if (Refs.I.ps.IsPathable(hoveredCoord))
-                        {
-                            _isConstructingThings = true;
-                            Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, hoveredCoord);
-                        }
-                    }
+                    if (
+                        Refs.I.gc.CanConstructMore(Refs.I.uic.StonePlacementMode) &&
+                        Refs.I.ps.IsPathable(hoveredCoord)
+                    ) Refs.I.gc.ConstructThing(Refs.I.uic.StonePlacementMode, hoveredCoord);
                 }
             }
         }

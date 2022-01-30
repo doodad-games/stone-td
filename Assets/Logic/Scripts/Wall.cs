@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [DefaultExecutionOrder(EXEC_ORDER)]
@@ -5,6 +6,8 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     public const int EXEC_ORDER = PathingBlocker.EXEC_ORDER + 1;
+
+    public static event Action<bool> onCountChanged;
 
 #pragma warning disable CS0649
     [SerializeField] GameObject _coreVisuals;
@@ -22,12 +25,16 @@ public class Wall : MonoBehaviour
 
         ReconnectVisuals();
         ReconnectNeighbourVisuals();
+        
+        onCountChanged?.Invoke(true);
     }
 
     void OnDisable()
     {
         if (Refs.I != null && Refs.I.ps != null)
             ReconnectNeighbourVisuals();
+
+        onCountChanged?.Invoke(false);
     }
 
     void RefreshNeighbours()

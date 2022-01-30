@@ -8,10 +8,12 @@ public class OnTowerCountChanged : MonoBehaviour
 
     void OnEnable()
     {
-        Tower.onCountChanged += Refresh;
+        Tower.onCountChanged += HandleTowerCountChanged;
         Refresh();
     }
-    void OnDisable() => Tower.onCountChanged -= Refresh;
+    void OnDisable() => Tower.onCountChanged -= HandleTowerCountChanged;
+
+    void HandleTowerCountChanged(bool _) => Refresh();
 
     void Refresh()
     {

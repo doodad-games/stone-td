@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IHasCollisionRadius
 {
-    public static event Action onAnyDied;
+    public static event Action<Enemy> onAnyDied;
+    public static event Action<Enemy> onAnyLostLife;
     public event Action onLifeChanged;
 
     public ProjectileTargetParams projectileTargetParams;
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
             if (_life == value)
                 return;
             
+            var isLifeLoss = value < _life;
             _life = value;
 
             if (value == 0 && !isDead)
@@ -34,6 +36,8 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
                     Die();
 
             onLifeChanged?.Invoke();
+            if (isLifeLoss)
+                onAnyLostLife?.Invoke(this);
         }
     }
 
@@ -60,6 +64,6 @@ public class Enemy : MonoBehaviour, IHasCollisionRadius
         Refs.I.Enemies.Remove(this);
         isDead = true;
         BroadcastMessage("Msg_OnDied");
-        onAnyDied?.Invoke();
+        onAnyDied?.Invoke(this);
     }
 }

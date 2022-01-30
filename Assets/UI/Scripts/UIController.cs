@@ -6,6 +6,8 @@ public class UIController : MonoBehaviour
 {
     public static event Action onStonePlacementModeChanged;
 
+    public static Action onError;
+
     Stone.Type _stonePlacementMode;
 
     public Stone.Type StonePlacementMode
@@ -13,6 +15,9 @@ public class UIController : MonoBehaviour
         get => _stonePlacementMode;
         set
         {
+            if (value == _stonePlacementMode)
+                return;
+
             _stonePlacementMode = value;
             onStonePlacementModeChanged?.Invoke();
         }

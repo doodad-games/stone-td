@@ -15,6 +15,7 @@ public class Stone : MonoBehaviour
 
     public static event Action<Stone> onAnyTappedChanged;
     public static event Action<Stone.Type> onFailedToUntap;
+    public static event Action onAnyMerged;
 
     public event Action onTappedChanged;
 
@@ -62,6 +63,7 @@ public class Stone : MonoBehaviour
         if (to == false && !Refs.I.gc.CanUntapStone(this))
         {
             onFailedToUntap?.Invoke(type);
+            UIController.onError?.Invoke();
             return;
         }
 
@@ -155,6 +157,7 @@ public class Stone : MonoBehaviour
         otherStone._thisEnemy.Life += Mathf.CeilToInt((_thisEnemy.Life + mergeCount) * MERGE_HP_FACTOR);
         ++otherStone.mergeCount;
         _thisEnemy.Life = 0;
+        onAnyMerged?.Invoke();
     }
 
     bool HasReachedCrystal() =>

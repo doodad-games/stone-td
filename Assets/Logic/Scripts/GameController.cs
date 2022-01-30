@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public static event Action onEnterDefencePhase;
     public static event Action onTick;
     public static event Action onPlayPauseToggled;
+    public static event Action<float> onWillSkipAhead;
     public static event Action onStonesAwakened;
     public static event Action<GameOverReason> onGameOver;
 
@@ -88,6 +89,8 @@ public class GameController : MonoBehaviour
             return;
         }
 
+        onWillSkipAhead?.Invoke(numTicks * Time.fixedDeltaTime);
+
         for (var i = 0; i != numTicks; ++i)
             DoTick();
     }
@@ -149,7 +152,7 @@ public class GameController : MonoBehaviour
         onGameOver?.Invoke(GameOverReason.StonesBrokeCrystal);
     }
 
-    void HandleEnemyDied()
+    void HandleEnemyDied(Enemy _)
     {
         if (
             Refs.I.Enemies.Count == 0 &&

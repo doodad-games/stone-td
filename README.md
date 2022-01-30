@@ -11,3 +11,4 @@
 - "Pixel UniCode" font created by ivancr72, downloaded from [FontStruct](https://fontstruct.com/fontstructions/show/908795)
 - [Track 1](https://github.com/doodad-games/stone-td/tree/main/Assets/Audio/Music%20Tracks/Track%201) made by [Aidan Dissonance](https://globalgamejam.org/users/aidan-dissonance) during the jam
 - [Track 2](https://github.com/doodad-games/stone-td/tree/main/Assets/Audio/Music%20Tracks/Track%202) made by [Eamon Coughlan](https://globalgamejam.org/users/eamon90) during the jam
+- [All these SFX](https://github.com/doodad-games/stone-td/tree/main/Assets/Audio/SFX/Max%20Kearney) made by [Max Kearney](https://globalgamejam.org/users/maxwelldexter) during the jam

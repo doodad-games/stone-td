@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class FireProjectilesAtEnemies : MonoBehaviour, IHasCollisionRadius
 {
+    public static event Action onAnyDidFire;
     public event Action onDidFire;
 
     public Projectile projectile;
@@ -70,5 +71,6 @@ public class FireProjectilesAtEnemies : MonoBehaviour, IHasCollisionRadius
         ).Init(_target);
 
         onDidFire?.Invoke();
+        onAnyDidFire?.Invoke();
     }
 }

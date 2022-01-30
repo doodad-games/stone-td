@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static event Action onSpawned;
+
     static Vector3 _spawnOffset = new Vector3(0, -0.52f, 0);
 
     public ToSpawn[] toSpawn;
@@ -50,6 +52,8 @@ public class Spawner : MonoBehaviour
         var invader = obj.GetComponent<Invader>();
         if (invader != null)
             invader.wasSpawned = true;
+        
+        onSpawned?.Invoke();
     }
 }
 

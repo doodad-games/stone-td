@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class EnemyPathToTarget : MonoBehaviour, IMovement
 {
+    public static event Action<PathingBlocker> onAnyWillDestroyBlocker;
+
     public float followDistance;
 
 #pragma warning disable CS0649
@@ -77,8 +80,11 @@ public class EnemyPathToTarget : MonoBehaviour, IMovement
         {
             var blocker = Refs.I.ps.GetBlocker(_nextCoord);
             if (blocker?.isDestructible == true)
+            {
+                onAnyWillDestroyBlocker?.Invoke(blocker);
                 // TODO: Animations
                 Destroy(blocker.gameObject);
+            }
 
             var vec = _nextPos - curPos;
             var dist = vec.magnitude;
