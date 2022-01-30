@@ -32,6 +32,7 @@ public class Invader : MonoBehaviour
         FindMovementTarget();
 
         GameController.onTick += HandleTick;
+        _thisEnemy.onDie += MaybeDropCrystal;
     }
 
     void OnDisable()
@@ -39,13 +40,13 @@ public class Invader : MonoBehaviour
         if (Refs.I != null)
         {
             Refs.I.Invaders.Remove(this);
-
-            if (isHoldingCrystal && targetCrystal != null)
-                DropCrystal();
+            MaybeDropCrystal();
         }
 
         GameController.onTick -= HandleTick;
 
+        if (_thisEnemy != null)
+            _thisEnemy.onDie -= MaybeDropCrystal;
     }
 
     public void SetCrystalFollowDistance(int followerI) =>
@@ -130,5 +131,12 @@ public class Invader : MonoBehaviour
         FindNearestCastle();
     }
     
-    void DropCrystal() => targetCrystal.Drop();
+    void MaybeDropCrystal()
+    {
+        if (isHoldingCrystal && targetCrystal != null)
+        {
+            targetCrystal.Drop();
+            isHoldingCrystal = false;
+        }
+    }
 }
