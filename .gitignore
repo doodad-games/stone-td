@@ -95,9 +95,13 @@ fmod_editor.log
 # BILAL MANUALLY ADDED
 #
 #
+PerformanceTestRunInfo.json*
+*.unitypackage.meta
 .vscode/
 TestResults-*.xml
 /steam_appid.txt
+desktop.ini
+Assets/AddressableAssetsData/link.xml*
 
 # Other FMOD stuff (so this same gitignore can be copied to FMOD projects 🤷)
 .cache
